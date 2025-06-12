@@ -265,6 +265,7 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             position: relative;
+            padding-bottom: 1rem;
         }
 
         .product-card:hover {
@@ -301,15 +302,54 @@
             color: #2c3e50;
         }
 
-        .product-description {
-            color: #7f8c8d;
-            margin-bottom: 1rem;
+        .product-specs {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+            flex-wrap: wrap;
         }
 
-        .product-price {
+        .spec-item {
+            font-size: 0.9rem;
+            background: #f8f9fa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            color: #2c3e50;
+        }
+
+        .product-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .product-details h4 {
+            color: #e67e22;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-details p {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+
+        .certification-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
             font-size: 1.2rem;
-            font-weight: bold;
-            color: #f39c12;
+        }
+
+        .certification-badges span {
+            cursor: help;
+            transition: transform 0.2s ease;
+        }
+
+        .certification-badges span:hover {
+            transform: scale(1.2);
         }
 
         /* Quality Section */
@@ -589,7 +629,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Hero Images */
+        /* Remove these CSS blocks
         .hero-images {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -623,89 +663,87 @@
         .hero-image-box:hover img {
             transform: scale(1.1);
         }
+        */
 
-        /* Add new styles for image links */
-        .img-link {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .img-link:hover {
-            transform: scale(1.02);
-        }
-
-        /* Lightbox styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1100;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .lightbox-content {
-            position: relative;
-            cursor: default;
-        }
-
-        .lightbox img {
-            max-height: 90vh;
-            max-width: 90vw;
+        /* Filter styles - updated with yellow theme */
+        .filter-container {
+            margin: 0 auto 2rem;
+            text-align: center;
+            max-width: 800px;
             background: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .filter-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.75rem 1.5rem;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+        }
+
+        .filter-title:hover {
+            background: #f39c12;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .filter-title h3 {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-icon {
+            font-size: 1.2rem;
+            color: #f39c12;
+            transition: all 0.2s ease;
+        }
+
+        .filter-title:hover .filter-icon {
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .filter-groups {
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1rem;
             padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
         }
 
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
+        .filter-groups.visible {
             display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-            box-sizing: border-box;
         }
 
-        .lightbox-btn {
-            background: white;
-            color: #2c3e50;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            font-size: 20px;
+        .filter-group {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .lightbox-btn:hover {
-            transform: scale(1.1);
-            background: #f39c12;
-            color: white;
-        }
-
-        .filter-section {
-            margin-bottom: 2rem;
-            text-align: center;
+        .filter-group-title {
+            font-weight: bold;
+            color: #e67e22;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.5rem;
             justify-content: center;
-            margin-top: 2rem;
         }
 
         .filter-btn {
@@ -722,7 +760,149 @@
         .filter-btn.active {
             background: #f39c12;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 10px rgba(243, 156, 18, 0.3);
         }
+
+        /* Aggiungi questi stili nella sezione <style> */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+
+        .reset-filters {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: none;
+        }
+
+        .reset-filters.visible {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .reset-filters:hover {
+            background: #c0392b;
+            transform: translateY(-1px);
+        }
+
+        /* Remove from <style> */
+/* Chatbot styles */
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-button {
+    background: #f39c12;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.chat-button:hover {
+    transform: scale(1.1);
+}
+
+.chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    display: none;
+    overflow: hidden;
+}
+
+.chat-window.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background: #f39c12;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.chat-input {
+    padding: 1rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+.chat-input button {
+    background: #f39c12;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -733,7 +913,7 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="LogoRemin.PNG" alt="Remin Logo">
+                <img src="LogoRemin.png" alt="Remin Logo">
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -747,8 +927,8 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <a href="LogoRemin.PNG" class="img-link">
-                <img src="LogoRemin.PNG" alt="Remin Logo" class="hero-logo">
+            <a href="LogoRemin.png" class="img-link">
+                <img src="LogoRemin.png" alt="Remin Logo" class="hero-logo">
             </a>
             <div class="hero-subtitle">Maestri Casari dal 1998</div>
             <p class="hero-description">
@@ -756,21 +936,6 @@
                 seguendo le tradizioni più antiche e utilizzando solo il latte migliore delle nostre terre.
             </p>
             <a href="#products" class="cta-button">Scopri i Nostri Formaggi</a>
-
-            <div class="hero-images">
-                <div class="hero-image-box">
-                    <img src="Violetta.png" alt="Violetta">
-                </div>
-                <div class="hero-image-box">
-                    <img src="Bucaneve.png" alt="Bucaneve">
-                </div>
-                <div class="hero-image-box">
-                    <img src="Cenerentola.png" alt="Cenerentola">
-                </div>
-                <div class="hero-image-box">
-                    <img src="DolceCapra.png" alt="Dolce Capra">
-                </div>
-            </div>
         </div>
     </section>
 
@@ -808,26 +973,67 @@
         <div class="container">
             <h2 class="section-title">I Nostri Prodotti</h2>
 
-            <div class="filter-section">
-                <h3>Filtra per peso</h3>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-weight="all">Tutti</button>
-                    <button class="filter-btn" data-weight="10">10g</button>
-                    <button class="filter-btn" data-weight="20">20g</button>
-                    <button class="filter-btn" data-weight="30">30g</button>
-                    <button class="filter-btn" data-weight="35">35g</button>
-                    <button class="filter-btn" data-weight="65">65g</button>
-                    <button class="filter-btn" data-weight="100">100g</button>
-                    <button class="filter-btn" data-weight="130">130g</button>
-                    <button class="filter-btn" data-weight="180">180g</button>
-                    <button class="filter-btn" data-weight="500">500g</button>
-                    <button class="filter-btn" data-weight="2000">2kg</button>
-                    <button class="filter-btn" data-weight="4000">4kg</button>
+            <div class="filter-container">
+                <div class="filter-title" id="filterToggle">
+                    <h3>Filtra selezione</h3>
+                    <svg class="filter-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 4h18v2H3V4zm0 7h12v2H3v-2zm0 7h6v2H3v-2z"/>
+                    </svg>
                 </div>
+                <div class="filter-groups" id="filterGroups">
+                    <div class="filter-group">
+                        <span class="filter-group-title">Peso</span>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="weight" data-value="all">Tutti</button>
+                            <button class="filter-btn" data-filter="weight" data-value="10">10g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="20">20g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="30">30g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="35">35g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="65">65g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="100">100g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="130">130g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="180">180g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="500">500g</button>
+                            <button class="filter-btn" data-filter="weight" data-value="2000">2kg</button>
+                            <button class="filter-btn" data-filter="weight" data-value="4000">4kg</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-group-title">Tipo di Peso</span>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="weightType" data-value="all">Tutti</button>
+                            <button class="filter-btn" data-filter="weightType" data-value="fixed">Peso Fisso</button>
+                            <button class="filter-btn" data-filter="weightType" data-value="variable">Peso Variabile</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-group-title">Stagionatura</span>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="type" data-value="all">Tutti</button>
+                            <button class="filter-btn" data-filter="type" data-value="fresh">Freschi</button>
+                            <button class="filter-btn" data-filter="type" data-value="mold">Muffettati</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-group-title">Tipo di Latte</span>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="milk" data-value="all">Tutti</button>
+                            <button class="filter-btn" data-filter="milk" data-value="cow">Mucca</button>
+                            <button class="filter-btn" data-filter="milk" data-value="goat">Capra</button>
+                            <button class="filter-btn" data-filter="milk" data-value="mix">Misto</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="reset-filters" id="resetFilters">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                    Rimuovi filtri
+                </button>
             </div>
 
             <div class="products-grid">
-                <div class="product-card" data-weight="65">  <!-- Changed from 20 -->
+                <div class="product-card" data-weight="65" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Bucaneve.png" class="img-link">
                             <img src="Bucaneve.png" alt="Bucaneve" style="width: 100%; height: 100%; object-fit: contain;">
@@ -835,11 +1041,31 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Bucaneve</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 65g</span>
+                            <span class="spec-item">🕒 Stagionatura: 7 giorni</span>
+                        </div>
                         <p class="product-description">La purezza del latte in ogni morso</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore delicato e cremoso, con note floreali. Pasta morbida ed elastica.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Miele d'acacia, confetture di agrumi, vini bianchi freschi</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="130">  <!-- Changed from 65 -->
+                <div class="product-card" data-weight="130" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Fiordalisio.png" class="img-link">
                             <img src="Fiordalisio.png" alt="Fiordaliso" style="width: 100%; height: 100%; object-fit: contain;">
@@ -847,11 +1073,31 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Fiordaliso</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 130g</span>
+                            <span class="spec-item">🕒 Stagionatura: 15 giorni</span>
+                        </div>
                         <p class="product-description">Un bouquet di sapori alpini</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore intenso e aromatico, con note di erbe e fiori di montagna. Pasta semi-morbida.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Confetture di frutti di bosco, miele di castagno, vini rossi leggeri</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="35">  <!-- Changed from 180 -->
+                <div class="product-card" data-weight="35" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Dalila.png" class="img-link">
                             <img src="Dalila.png" alt="Dalila" style="width: 100%; height: 100%; object-fit: contain;">
@@ -859,11 +1105,31 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Dalila</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 35g</span>
+                            <span class="spec-item">🕒 Stagionatura: 10 giorni</span>
+                        </div>
                         <p class="product-description">Un formaggio dalla personalità unica</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore deciso e piccante, con sentori di nocciola. Pasta dura e granulosa.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Mostarde, miele piccante, vini rossi strutturati</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="20">  <!-- Changed from 500 -->
+                <div class="product-card" data-weight="20" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Rosita.png" class="img-link">
                             <img src="Rosita.png" alt="Rosita" style="width: 100%; height: 100%; object-fit: contain;">
@@ -871,11 +1137,31 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Rosita</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 20g</span>
+                            <span class="spec-item">🕒 Stagionatura: 5 giorni</span>
+                        </div>
                         <p class="product-description">La dolcezza in ogni fetta</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore dolce e avvolgente, con note di vaniglia. Pasta morbida e cremosa.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Confetture dolci, cioccolato bianco, vini passiti</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="180">  <!-- Changed from 30 -->
+                <div class="product-card" data-weight="180" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Margherita.png" class="img-link">
                             <img src="Margherita.png" alt="Margherita" style="width: 100%; height: 100%; object-fit: contain;">
@@ -883,11 +1169,31 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Margherita</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 180g</span>
+                            <span class="spec-item">🕒 Stagionatura: 20 giorni</span>
+                        </div>
                         <p class="product-description">La semplicità che conquista</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore semplice e genuino, con note di burro fresco. Pasta compatta e morbida.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Pane casereccio, salumi leggeri, vini bianchi strutturati</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="10">  <!-- Changed from 35 -->
+                <div class="product-card" data-weight="10" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Girasole.png" class="img-link">
                             <img src="Girasole.png" alt="Girasole" style="width: 100%; height: 100%; object-fit: contain;">
@@ -895,11 +1201,31 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Girasole</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 10g</span>
+                            <span class="spec-item">🕒 Stagionatura: 3 giorni</span>
+                        </div>
                         <p class="product-description">Il sapore che segue la luce</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore fresco e leggero, con note di erba appena tagliata. Pasta molto morbida.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Insalate fresche, oli aromatici, vini bianchi giovani</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="35">  <!-- Changed from 10 -->
+                <div class="product-card" data-weight="35" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Primula.png" class="img-link">
                             <img src="Primula.png" alt="Primula" style="width: 100%; height: 100%; object-fit: contain;">
@@ -907,11 +1233,31 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Primula</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 35g</span>
+                            <span class="spec-item">🕒 Stagionatura: 10 giorni</span>
+                        </div>
                         <p class="product-description">La freschezza della primavera</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore fresco e acidulo, con note di fiori di campo. Pasta morbida e spalmabile.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Pane tostato, verdure grigliate, vini rosati</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="10">  <!-- Changed from 20 -->
+                <div class="product-card" data-weight="10" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Violetta.png" class="img-link">
                             <img src="Violetta.png" alt="Violetta" style="width: 100%; height: 100%; object-fit: contain;">
@@ -919,11 +1265,31 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Violetta</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 10g</span>
+                            <span class="spec-item">🕒 Stagionatura: 4 giorni</span>
+                        </div>
                         <p class="product-description">Formaggio dal carattere delicato e raffinato</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore delicato e floreale, con note di mandorla. Pasta morbida e cremosa.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Frutta fresca, cioccolato bianco, vini dolci</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="100">
+                <div class="product-card" data-weight="100" data-type="fresh" data-milk="goat">
                     <div class="product-image">
                         <a href="Giglio.png" class="img-link">
                             <img src="Giglio.png" alt="Giglio" style="width: 100%; height: 100%; object-fit: contain;">
@@ -931,71 +1297,63 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Giglio</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 100g</span>
+                            <span class="spec-item">🕒 Stagionatura: 30 giorni</span>
+                        </div>
                         <p class="product-description">Nobiltà e eleganza in ogni fetta</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore ricco e complesso, con note di burro e nocciola. Pasta dura e friabile.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Salumi stagionati, pane rustico, vini rossi corposi</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="4000">
-                    <div class="product-image">
-                        <a href="Strachinata.png" class="img-link">
-                            <img src="Strachinata.png" alt="Strachinata" style="width: 100%; height: 100%; object-fit: contain;">
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Strachinata</h3>
-                        <p class="product-description">Sapori antichi della tradizione</p>
-                    </div>
-                </div>
-
-                <div class="product-card" data-weight="2000">
-                    <div class="product-image">
-                        <a href="DolceCapra.png" class="img-link">
-                            <img src="DolceCapra.png" alt="Toma Bianca 'dolce capra'" style="width: 100%; height: 100%; object-fit: contain;">
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Toma Bianca "dolce capra"</h3>
-                        <p class="product-description">La dolcezza del latte di capra</p>
-                    </div>
-                </div>
-
-                <div class="product-card" data-weight="10"> <!-- Changed from 10 -->
-                    <div class="product-image">
-                        <a href="Girasole.png" class="img-link">
-                            <img src="Girasole.png" alt="Girasole" style="width: 100%; height: 100%; object-fit: contain;">
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Girasole</h3>
-                        <p class="product-description">Il sapore che segue la luce</p>
-                    </div>
-                </div>
-
-                <div class="product-card" data-weight="65">
-                    <div class="product-image">
-                        <a href="Narciso.png" class="img-link">
-                            <img src="Narciso.png" alt="Narciso" style="width: 100%; height: 100%; object-fit: contain;">
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Narciso</h3>
-                        <p class="product-description">L'essenza della perfezione</p>
-                    </div>
-                </div>
-
-                <div class="product-card" data-weight="500">  <!-- Changed from 30 -->
+                <div class="product-card" data-weight="500" data-type="mold" data-weight-type="variable" data-milk="goat">
                     <div class="product-image">
                         <a href="Cenerentola.png" class="img-link">
-                            <img src="Cenerentola.png" alt="Cenerentola" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img src="Cenerentola.png" alt="Cenerentola">
                         </a>
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Cenerentola</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 500g</span>
+                            <span class="spec-item">🕒 Stagionatura: 60 giorni</span>
+                        </div>
                         <p class="product-description">Una favola di sapori</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore intenso e avvolgente, con note di tartufo e funghi. Pasta compatta e friabile.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Pane casereccio, miele di castagno, vini rossi strutturati</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="30">
+                <div class="product-card" data-weight="30" data-type="mold" data-weight-type="fixed" data-milk="cow">
                     <div class="product-image">
                         <a href="Aperitaly.png" class="img-link">
                             <img src="Aperitaly.png" alt="Aperitaly" style="width: 100%; height: 100%; object-fit: contain;">
@@ -1003,9 +1361,126 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">Aperitaly</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 Latte di Mucca</span>
+                            <span class="spec-item">⚖️ 30g</span>
+                            <span class="spec-item">🕒 Stagionatura: 20 giorni</span>
+                        </div>
                         <p class="product-description">Il gusto dell'aperitivo italiano</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore equilibrato e aromatico, con note di olive e rosmarino. Pasta dura e friabile.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Olive marinate, pomodori secchi, vini bianchi aromatici</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
                     </div>
                 </div>
+
+                <div class="product-card" data-weight="2000" data-type="mold" data-weight-type="variable" data-milk="goat">
+                    <div class="product-image">
+                        <a href="DolceCapra.png" class="img-link">
+                            <img src="DolceCapra.png" alt="Toma Bianca 'dolce capra'" style="width: 100%; height: 100%; object-fit: contain;">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Toma Bianca "dolce capra"</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 2000g</span>
+                            <span class="spec-item">🕒 Stagionatura: 90 giorni</span>
+                        </div>
+                        <p class="product-description">La dolcezza del latte di capra</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore dolce e delicato, con note di panna e miele. Pasta morbida e cremosa.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Miele millefiori, noci, vini passiti</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-weight="4000" data-type="mold" data-weight-type="variable" data-milk="cow">
+                    <div class="product-image">
+                        <a href="Strachinata.png" class="img-link">
+                            <img src="Strachinata.png" alt="Strachinata" style="width: 100%; height: 100%; object-fit: contain;">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Strachinata</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 Latte di Mucca</span>
+                            <span class="spec-item">⚖️ 4000g</span>
+                            <span class="spec-item">🕒 Stagionatura: 120 giorni</span>
+                        </div>
+                        <p class="product-description">Sapori antichi della tradizione</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore robusto e deciso, con note di fieno e spezie. Pasta dura e granulosa.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Pane di segale, salumi affumicati, vini rossi invecchiati</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-weight="100" data-type="fresh" data-milk="goat">
+                    <div class="product-image">
+                        <a href="SpecTartufo.png" class="img-link">
+                            <img src="SpecTartufo.png" alt="Specialità al Tartufo" style="width: 100%; height: 100%; object-fit: contain;">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Specialità al Tartufo</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 100g</span>
+                            <span class="spec-item">🕒 Stagionatura: 30 giorni</span>
+                        </div>
+                        <p class="product-description">L'incontro perfetto tra formaggio e tartufo</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore intenso e terroso, con note di tartufo nero. Pasta dura e friabile.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Pane tostato, miele di castagno, vini rossi strutturati</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
+                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1107,7 +1582,7 @@
         </div>
     </footer>
 
-    <div class="lightbox" id="lightbox">
+    <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
         <div class="lightbox-content">
             <img src="" alt="Enlarged Image">
             <div class="lightbox-nav">
@@ -1185,77 +1660,221 @@
             });
         });
 
-        // Add lightbox functionality
-        const allImages = document.querySelectorAll('.img-link');
-        let currentImageIndex = 0;
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
 
-        function showImage(index) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = lightbox.querySelector('img');
-            currentImageIndex = index;
-            lightboxImg.src = allImages[index].href;
-        }
-
-        document.querySelectorAll('.img-link').forEach((link, index) => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                showImage(index);
-                document.getElementById('lightbox').style.display = 'flex';
-            });
-        });
-
-        document.querySelector('.lightbox-btn.prev').addEventListener('click', function(e) {
-            e.stopPropagation();
-            currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
-            showImage(currentImageIndex);
-        });
-
-        document.querySelector('.lightbox-btn.next').addEventListener('click', function(e) {
-            e.stopPropagation();
-            currentImageIndex = (currentImageIndex + 1) % allImages.length;
-            showImage(currentImageIndex);
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('lightbox').style.display === 'flex') {
-                if (e.key === 'ArrowLeft') {
-                    currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
-                    showImage(currentImageIndex);
-                } else if (e.key === 'ArrowRight') {
-                    currentImageIndex = (currentImageIndex + 1) % allImages.length;
-                    showImage(currentImageIndex);
-                } else if (e.key === 'Escape') {
-                    document.getElementById('lightbox').style.display = 'none';
-                }
+        // Aggiungi la gestione del tasto ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                lightbox.style.display = 'none';
             }
         });
 
-        document.querySelector('.lightbox-content').addEventListener('click', function(e) {
+        // Aggiorna l'evento click sulle immagini
+        document.querySelectorAll('.product-image img').forEach((image, index) => {
+            image.style.cursor = 'pointer';  // Aggiungi il cursore pointer
+            image.addEventListener('click', (e) => {
+                e.preventDefault();
+                lightboxImg.src = image.src;
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        // Chiudi il lightbox quando si clicca fuori dall'immagine
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+
+        // Previeni la chiusura quando si clicca sull'immagine
+        lightboxImg.addEventListener('click', (e) => {
             e.stopPropagation();
         });
 
-        // Product filtering
+        // Product filtering - Updated version
         const filterButtons = document.querySelectorAll('.filter-btn');
         const products = document.querySelectorAll('.product-card');
+        
+        // Oggetto per tenere traccia dei filtri attivi
+        const activeFilters = {
+            weight: 'all',
+            weightType: 'all',
+            type: 'all',
+            milk: 'all'
+        };
+
+        function applyFilters() {
+            products.forEach(product => {
+                const weight = product.getAttribute('data-weight');
+                const weightType = product.getAttribute('data-weight-type') || 'fixed';
+                const type = product.getAttribute('data-type');
+                const milk = product.getAttribute('data-milk') || 'mixed';
+
+                // Verifica se il prodotto soddisfa tutti i filtri attivi
+                const matchWeight = activeFilters.weight === 'all' || weight === activeFilters.weight;
+                const matchWeightType = activeFilters.weightType === 'all' || weightType === activeFilters.weightType;
+                const matchType = activeFilters.type === 'all' || type === activeFilters.type;
+                const matchMilk = activeFilters.milk === 'all' || milk === activeFilters.milk;
+
+                // Mostra il prodotto solo se soddisfa TUTTI i filtri
+                if (matchWeight && matchWeightType && matchType && matchMilk) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        const resetFilters = document.getElementById('resetFilters');
+
+        function resetAllFilters() {
+            // Resetta l'oggetto dei filtri
+            Object.keys(activeFilters).forEach(key => {
+                activeFilters[key] = 'all';
+            });
+            
+            // Rimuovi la classe active da tutti i pulsanti tranne "Tutti"
+            filterButtons.forEach(btn => {
+                if(btn.getAttribute('data-value') === 'all') {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Mostra tutti i prodotti
+            products.forEach(product => {
+                product.style.display = 'block';
+            });
+            
+            // Nascondi il pulsante reset
+            resetFilters.classList.remove('visible');
+        }
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
+                const filterType = button.getAttribute('data-filter');
+                const filterValue = button.getAttribute('data-value');
+                
+                // Rimuovi active solo dai pulsanti dello stesso gruppo
+                const groupButtons = button.closest('.filter-buttons').querySelectorAll('.filter-btn');
+                groupButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Aggiungi active al pulsante cliccato
                 button.classList.add('active');
-
-                const weight = button.getAttribute('data-weight');
-
-                products.forEach(product => {
-                    if (weight === 'all' || product.getAttribute('data-weight') === weight) {
-                        product.style.display = 'block';
-                    } else {
-                        product.style.display = 'none';
-                    }
-                });
+                
+                // Aggiorna il filtro attivo
+                activeFilters[filterType] = filterValue;
+                
+                // Verifica se ci sono filtri attivi
+                const hasActiveFilters = Object.values(activeFilters).some(value => value !== 'all');
+                if (hasActiveFilters) {
+                    resetFilters.classList.add('visible');
+                } else {
+                    resetFilters.classList.remove('visible');
+                }
+                
+                // Applica i filtri
+                applyFilters();
             });
         });
+
+        resetFilters.addEventListener('click', resetAllFilters);
+
+        // Filter toggle functionality
+        const filterToggle = document.getElementById('filterToggle');
+        const filterGroups = document.getElementById('filterGroups');
+        const filterIcon = document.querySelector('.filter-icon');
+
+        filterToggle.addEventListener('click', () => {
+            filterGroups.classList.toggle('visible');
+            filterIcon.classList.toggle('rotated');
+        });
+
+        /* Remove from <script> */
+        // Chatbot functionality
+        function toggleChat() {
+            document.getElementById('chatWindow').classList.toggle('active');
+        }
+
+        document.getElementById('chatButton').addEventListener('click', toggleChat);
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (message) {
+                appendMessage('user', message);
+                // Simula risposta automatica
+                setTimeout(() => {
+                    const response = getAutomaticResponse(message);
+                    appendMessage('bot', response);
+                }, 1000);
+                input.value = '';
+            }
+        }
+
+        function appendMessage(type, text) {
+            const messages = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = `message ${type}`;
+            div.textContent = text;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getAutomaticResponse(message) {
+            // Logica base per risposte automatiche
+            const responses = {
+                'orari': 'Siamo aperti Lun-Ven 8:00-18:00 e Sab 8:00-13:00',
+                'contatti': 'Puoi contattarci al +39 035 123 4567 o via email a info@remin.it',
+                'prodotti': 'Abbiamo una vasta gamma di formaggi freschi e stagionati. Puoi vedere tutti i nostri prodotti nella sezione dedicata.',
+                'default': 'Grazie per il tuo messaggio. Un nostro operatore ti risponderà al più presto.'
+            };
+
+            message = message.toLowerCase();
+            if (message.includes('orari')) return responses.orari;
+            if (message.includes('contatt')) return responses.contatti;
+            if (message.includes('prodott')) return responses.prodotti;
+            return responses.default;
+        }
+
+        /* SEO meta tags */
+        const metaDescription = document.createElement('meta');
+        metaDescription.name = "description";
+        metaDescription.content = "Remin - Dal 1998 produciamo formaggi di eccellenza seguendo le tradizioni più antiche. Scopri i nostri prodotti caseari artigianali.";
+        document.head.appendChild(metaDescription);
+
+        const metaKeywords = document.createElement('meta');
+        metaKeywords.name = "keywords";
+        metaKeywords.content = "formaggio, prodotti caseari, formaggi artigianali, latticini, Bergamo, tradizione casearia";
+        document.head.appendChild(metaKeywords);
+
+        const metaOgTitle = document.createElement('meta');
+        metaOgTitle.property = "og:title";
+        metaOgTitle.content = "Remin | Formaggi e Latticini di Tradizione dal 1965";
+        document.head.appendChild(metaOgTitle);
+
+        const metaOgDescription = document.createElement('meta');
+        metaOgDescription.property = "og:description";
+        metaOgDescription.content = "Maestri casari dal 1998, produciamo formaggi di eccellenza con il latte migliore delle nostre terre.";
+        document.head.appendChild(metaOgDescription);
+
+        const metaOgImage = document.createElement('meta');
+        metaOgImage.property = "og:image";
+        metaOgImage.content = "LogoRemin.png";
+        document.head.appendChild(metaOgImage);
+
+        const metaOgUrl = document.createElement('meta');
+        metaOgUrl.property = "og:url";
+        metaOgUrl.content = "https://www.remin.it";
+        document.head.appendChild(metaOgUrl);
+
+        const linkCanonical = document.createElement('link');
+        linkCanonical.rel = "canonical";
+        linkCanonical.href = "https://www.remin.it";
+        document.head.appendChild(linkCanonical);
     </script>
 </body>
 </html>

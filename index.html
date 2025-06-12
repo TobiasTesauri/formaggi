@@ -91,11 +91,51 @@
             width: 100%;
         }
 
+        /* Search box styles */
+        .search-box {
+            margin-bottom: 1rem;
+            position: relative;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 2.5rem;
+            border: 2px solid #f39c12;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            color: #2c3e50;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f39c12;
+            pointer-events: none;
+        }
+
+        .search-input::placeholder {
+            color: #95a5a6;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f4f4f4" width="1200" height="800"/><circle fill="%23e8e8e8" cx="300" cy="200" r="100"/><circle fill="%23e8e8e8" cx="900" cy="300" r="80"/><circle fill="%23e8e8e8" cx="600" cy="500" r="120"/><rect fill="%23ddd" x="200" y="400" width="300" height="200" rx="20"/><rect fill="%23ddd" x="700" y="500" width="250" height="150" rx="15"/></svg>');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+                        url('cheese-pattern.png');
+            background-attachment: fixed;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -105,33 +145,105 @@
             text-align: center;
             color: white;
             padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(243, 156, 18, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(230, 126, 34, 0.1) 0%, transparent 50%);
+            animation: pulseGradient 8s ease-in-out infinite;
+            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 800px;
-            padding: 3rem;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
+            position: relative;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 1.2s ease-out;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeInAndSlideUp 1.5s ease-out;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .hero-logo {
-            height: 200px; /* Increased size for more prominence */
+            height: 200px;
             margin-bottom: 2rem;
             display: block;
             margin-left: auto;
             margin-right: auto;
-            animation: fadeInUp 1.5s ease-out;
-            background: white;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: floatLogo 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(243, 156, 18, 0.3));
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
         }
 
-        /* Remove hero h1 styles completely */
+        .hero-logo:hover {
+            transform: translateZ(50px) rotateY(10deg);
+            filter: drop-shadow(0 0 30px rgba(243, 156, 18, 0.5));
+        }
+
+        @keyframes floatLogo {
+            0%, 100% {
+                transform: translateY(0) translateZ(0) rotateY(0);
+            }
+            50% {
+                transform: translateY(-20px) translateZ(20px) rotateY(5deg);
+            }
+        }
+
+        @keyframes pulseGradient {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Particle effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: moveParticle 15s linear infinite;
+        }
+
+        @keyframes moveParticle {
+            0% {
+                transform: translateY(100vh) translateX(var(--x));
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) translateX(calc(var(--x) + var(--drift)));
+                opacity: 0;
+            }
+        }
 
         .hero-subtitle {
             font-size: 1.5rem;
@@ -178,7 +290,8 @@
         /* About Section */
         .about {
             padding: 5rem 0;
-            background: #f8f9fa;
+            background: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), #f8f9fa;
+            position: relative;
         }
 
         .container {
@@ -248,7 +361,8 @@
         /* Products Section */
         .products {
             padding: 5rem 0;
-            background: white;
+            background: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), linear-gradient(to bottom, #fefefe, #f8f9fa);
+            position: relative;
         }
 
         .products-grid {
@@ -260,46 +374,85 @@
 
         .product-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             padding-bottom: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: rgba(243, 156, 18, 0.2);
         }
 
         .product-image {
-            height: 200px;
-            background: white;
+            height: 250px;
+            background: linear-gradient(to bottom, #f8f9fa, white);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
-            padding: 1rem;
+            padding: 2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transform: translateZ(20px);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .product-image img {
-            transition: transform 0.3s ease;
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            max-width: 90%;
+            height: auto;
         }
 
         .product-card:hover .product-image img {
-            transform: scale(1.1);
+            transform: scale(1.08) translateY(-5px);
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15));
         }
 
         .product-info {
-            padding: 1.5rem;
+            padding: 2rem;
+            background: linear-gradient(to bottom, white, #fafafa);
         }
 
-        .product-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
+        /* Aggiungi questi nuovi stili */
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #f39c12, #e67e22);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.05), transparent);
+        }
+
+        .product-info h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
         }
 
         .product-specs {
@@ -355,9 +508,14 @@
         /* Quality Section */
         .quality {
             padding: 5rem 0;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: url('https://www.transparenttextures.com/patterns/dark-wood.png'), linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
             text-align: center;
+            position: relative;
+        }
+
+        .quality .section-title {
+            color: white;  /* Cambiato da #2c3e50 a white */
         }
 
         .quality-features {
@@ -374,11 +532,30 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            transform: rotate(45deg);
+            transition: all 0.8s ease-out;
+            pointer-events: none;
         }
 
         .feature:hover {
             transform: translateY(-5px);
             background: rgba(255,255,255,0.15);
+        }
+
+        .feature:hover::before {
+            transform: rotate(225deg);
         }
 
         .feature-icon {
@@ -395,7 +572,8 @@
         /* Contact Section */
         .contact {
             padding: 5rem 0;
-            background: #f8f9fa;
+            background: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), linear-gradient(to bottom, #f8f9fa, #f1f1f1);
+            position: relative;
         }
 
         .contact-content {
@@ -560,6 +738,22 @@
             }
         }
 
+        @keyframes slideBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        @keyframes fadeInAndSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -594,41 +788,77 @@
             scroll-behavior: smooth;
         }
 
-        /* Loading animation */
+        /* Preloader professionale */
         .loading {
-            position: fixed;
-            top: 0;
+            background: radial-gradient(circle, #2c3e50 0%, #1a252f 100%);
+        }
+
+        .loading::after {
+            content: 'Benvenuti in Remin';
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #f39c12;
+            font-family: 'Georgia', serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            animation: pulseText 2s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Miglioramenti accessibilità */
+        .skip-link {
+            position: absolute;
+            top: -40px;
             left: 0;
+            background: #f39c12;
+            color: white;
+            padding: 8px;
+            z-index: 100000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Micro-interazioni */
+        .product-specs span {
+            transition: transform 0.3s ease;
+        }
+
+        .product-specs span:hover {
+            transform: scale(1.1) translateY(-2px);
+        }
+
+        .section-title {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
             width: 100%;
             height: 100%;
-            background: #2c3e50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(243, 156, 18, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
 
-        .loading.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .section-title:hover::before {
+            transform: translateX(100%);
         }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(243, 156, 18, 0.3);
-            border-top: 3px solid #f39c12;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        /* Schema markup strutturato */
+        [itemscope] {
+            display: block;
         }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         /* Remove these CSS blocks
         .hero-images {
             display: grid;
@@ -974,6 +1204,13 @@
             <h2 class="section-title">I Nostri Prodotti</h2>
 
             <div class="filter-container">
+                <!-- Add search input before filter title -->
+                <div class="search-box">
+                    <input type="text" id="productSearch" placeholder="Cerca un prodotto..." class="search-input">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                </div>
                 <div class="filter-title" id="filterToggle">
                     <h3>Filtra selezione</h3>
                     <svg class="filter-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -981,7 +1218,7 @@
                     </svg>
                 </div>
                 <div class="filter-groups" id="filterGroups">
-                    <div class="filter-group">
+                    <div class="filter-group" style="display: none;">  <!-- Hide weight filter -->
                         <span class="filter-group-title">Peso</span>
                         <div class="filter-buttons">
                             <button class="filter-btn active" data-filter="weight" data-value="all">Tutti</button>
@@ -999,19 +1236,12 @@
                         </div>
                     </div>
                     <div class="filter-group">
-                        <span class="filter-group-title">Tipo di Peso</span>
-                        <div class="filter-buttons">
-                            <button class="filter-btn active" data-filter="weightType" data-value="all">Tutti</button>
-                            <button class="filter-btn" data-filter="weightType" data-value="fixed">Peso Fisso</button>
-                            <button class="filter-btn" data-filter="weightType" data-value="variable">Peso Variabile</button>
-                        </div>
-                    </div>
-                    <div class="filter-group">
-                        <span class="filter-group-title">Stagionatura</span>
+                        <span class="filter-group-title">Categorie di Formaggio</span>
                         <div class="filter-buttons">
                             <button class="filter-btn active" data-filter="type" data-value="all">Tutti</button>
-                            <button class="filter-btn" data-filter="type" data-value="fresh">Freschi</button>
+                            <button class="filter-btn" data-filter="type" data-value="fresh">Freschi peso fisso</button>
                             <button class="filter-btn" data-filter="type" data-value="mold">Muffettati</button>
+                            <button class="filter-btn" data-filter="type" data-value="creations">Le Creazioni</button>
                         </div>
                     </div>
                     <div class="filter-group">
@@ -1020,7 +1250,7 @@
                             <button class="filter-btn active" data-filter="milk" data-value="all">Tutti</button>
                             <button class="filter-btn" data-filter="milk" data-value="cow">Mucca</button>
                             <button class="filter-btn" data-filter="milk" data-value="goat">Capra</button>
-                            <button class="filter-btn" data-filter="milk" data-value="mix">Misto</button>
+                            <button class="filter-btn" data-filter="milk" data-value="mix">Latte Misto</button>
                         </div>
                     </div>
                 </div>
@@ -1033,24 +1263,26 @@
             </div>
 
             <div class="products-grid">
-                <div class="product-card" data-weight="65" data-type="fresh" data-milk="goat">
+                <div class="product-card" data-weight="65" data-type="fresh" data-milk="goat" itemscope itemtype="http://schema.org/Product">
+                    <meta itemprop="name" content="Bucaneve">
+                    <meta itemprop="description" content="La purezza del latte in ogni morso">
                     <div class="product-image">
                         <a href="Bucaneve.png" class="img-link">
                             <img src="Bucaneve.png" alt="Bucaneve" style="width: 100%; height: 100%; object-fit: contain;">
                         </a>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">Bucaneve</h3>
+                        <h3 class="product-title" itemprop="name">Bucaneve</h3>
                         <div class="product-specs">
-                            <span class="spec-item">🥛 100% Latte di Capra</span>
-                            <span class="spec-item">⚖️ 65g</span>
+                            <span class="spec-item" itemprop="additionalType">🥛 100% Latte di Capra</span>
+                            <span class="spec-item" itemprop="weight">⚖️ 65g</span>
                             <span class="spec-item">🕒 Stagionatura: 7 giorni</span>
                         </div>
-                        <p class="product-description">La purezza del latte in ogni morso</p>
+                        <p class="product-description" itemprop="description">La purezza del latte in ogni morso</p>
                         <div class="product-details">
                             <div class="taste-profile">
                                 <h4>Profilo Organolettico:</h4>
-                                <p>Sapore delicato e cremoso, con note floreali. Pasta morbida ed elastica.</p>
+                                <p>Sapore delicato e cremoso, con note floreali. Pasta morbida.</p>
                             </div>
                             <div class="pairings">
                                 <h4>Abbinamenti Consigliati:</h4>
@@ -1059,7 +1291,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1091,7 +1322,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1123,7 +1353,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1155,7 +1384,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1187,7 +1415,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1219,7 +1446,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1251,7 +1477,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1283,7 +1508,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1315,7 +1539,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1347,7 +1570,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1379,7 +1601,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1411,7 +1632,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1443,7 +1663,6 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1475,7 +1694,37 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">🏺</span>
-                            <span title="Senza Conservanti">🌿</span>
+                            <span title="Filiera Controllata">✔️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-weight="65" data-type="fresh" data-milk="goat">
+                    <div class="product-image">
+                        <a href="Narciso.png" class="img-link">
+                            <img src="Narciso.png" alt="Narciso" style="width: 100%; height: 100%; object-fit: contain;">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Narciso</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 100% Latte di Capra</span>
+                            <span class="spec-item">⚖️ 65g</span>
+                            <span class="spec-item">🕒 Stagionatura: 15 giorni</span>
+                        </div>
+                        <p class="product-description">Delicatezza e raffinatezza in ogni morso</p>
+                        <div class="product-details">
+                            <div class="taste-profile">
+                                <h4>Profilo Organolettico:</h4>
+                                <p>Sapore delicato e aromatico, con note floreali. Pasta morbida e vellutata.</p>
+                            </div>
+                            <div class="pairings">
+                                <h4>Abbinamenti Consigliati:</h4>
+                                <p>Miele di acacia, confetture di fiori, vini bianchi leggeri</p>
+                            </div>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">🏺</span>
                             <span title="Filiera Controllata">✔️</span>
                         </div>
                     </div>
@@ -1592,13 +1841,22 @@
         </div>
     </div>
 
+    <a href="#main" class="skip-link">Salta al contenuto principale</a>
+
     <script>
         // Loading animation
         window.addEventListener('load', function() {
             const loading = document.getElementById('loading');
+            document.body.style.overflow = 'hidden';
+            
             setTimeout(() => {
-                loading.classList.add('hidden');
-            }, 1000);
+                loading.style.opacity = '0';
+                document.body.style.overflow = '';
+                
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 500);
+            }, 1500);
         });
 
         // Smooth scrolling for navigation links
@@ -1623,18 +1881,24 @@
         });
 
         // Enhanced scroll animations
-        const animateOnScroll = new IntersectionObserver((entries) => {
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
+                    entry.target.classList.add('visible');
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.opacity = '1';
                 }
             });
-        }, {
-            threshold: 0.2
-        });
+        }, observerOptions);
 
-        document.querySelectorAll('.product-card, .feature, .about-content > *').forEach(el => {
-            animateOnScroll.observe(el);
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('section');
+            sectionObserver.observe(section);
         });
 
         // Header background on scroll
@@ -1693,11 +1957,15 @@
             e.stopPropagation();
         });
 
-        // Product filtering - Updated version
+        // Replace the filter code with this fixed version
         const filterButtons = document.querySelectorAll('.filter-btn');
         const products = document.querySelectorAll('.product-card');
+        const resetFilters = document.getElementById('resetFilters');
+        const filterToggle = document.getElementById('filterToggle');
+        const filterGroups = document.getElementById('filterGroups');
+        const filterIcon = document.querySelector('.filter-icon');
         
-        // Oggetto per tenere traccia dei filtri attivi
+        // Object to track active filters
         const activeFilters = {
             weight: 'all',
             weightType: 'all',
@@ -1706,36 +1974,30 @@
         };
 
         function applyFilters() {
+            const searchTerm = productSearch.value.toLowerCase();
+            
             products.forEach(product => {
                 const weight = product.getAttribute('data-weight');
                 const weightType = product.getAttribute('data-weight-type') || 'fixed';
                 const type = product.getAttribute('data-type');
                 const milk = product.getAttribute('data-milk') || 'mixed';
+                const title = product.querySelector('.product-title').textContent.toLowerCase();
 
-                // Verifica se il prodotto soddisfa tutti i filtri attivi
-                const matchWeight = activeFilters.weight === 'all' || weight === activeFilters.weight;
+                const matchSearch = searchTerm === '' || title.includes(searchTerm);
+                                              const matchWeight = activeFilters.weight === 'all' || weight === activeFilters.weight;
                 const matchWeightType = activeFilters.weightType === 'all' || weightType === activeFilters.weightType;
                 const matchType = activeFilters.type === 'all' || type === activeFilters.type;
                 const matchMilk = activeFilters.milk === 'all' || milk === activeFilters.milk;
 
-                // Mostra il prodotto solo se soddisfa TUTTI i filtri
-                if (matchWeight && matchWeightType && matchType && matchMilk) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
+                product.style.display = (matchSearch && matchWeight && matchWeightType && matchType && matchMilk) ? 'block' : 'none';
             });
         }
 
-        const resetFilters = document.getElementById('resetFilters');
-
         function resetAllFilters() {
-            // Resetta l'oggetto dei filtri
             Object.keys(activeFilters).forEach(key => {
                 activeFilters[key] = 'all';
             });
             
-            // Rimuovi la classe active da tutti i pulsanti tranne "Tutti"
             filterButtons.forEach(btn => {
                 if(btn.getAttribute('data-value') === 'all') {
                     btn.classList.add('active');
@@ -1744,137 +2006,137 @@
                 }
             });
             
-            // Mostra tutti i prodotti
             products.forEach(product => {
                 product.style.display = 'block';
             });
             
-            // Nascondi il pulsante reset
             resetFilters.classList.remove('visible');
+            productSearch.value = '';
+            applyFilters();
         }
 
+        // Filter button click handlers
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const filterType = button.getAttribute('data-filter');
                 const filterValue = button.getAttribute('data-value');
                 
-                // Rimuovi active solo dai pulsanti dello stesso gruppo
                 const groupButtons = button.closest('.filter-buttons').querySelectorAll('.filter-btn');
                 groupButtons.forEach(btn => btn.classList.remove('active'));
                 
-                // Aggiungi active al pulsante cliccato
                 button.classList.add('active');
-                
-                // Aggiorna il filtro attivo
                 activeFilters[filterType] = filterValue;
                 
-                // Verifica se ci sono filtri attivi
                 const hasActiveFilters = Object.values(activeFilters).some(value => value !== 'all');
-                if (hasActiveFilters) {
-                    resetFilters.classList.add('visible');
-                } else {
-                    resetFilters.classList.remove('visible');
-                }
+                resetFilters.classList.toggle('visible', hasActiveFilters);
                 
-                // Applica i filtri
                 applyFilters();
             });
         });
 
+        // Reset filters button handler
         resetFilters.addEventListener('click', resetAllFilters);
 
-        // Filter toggle functionality
-        const filterToggle = document.getElementById('filterToggle');
-        const filterGroups = document.getElementById('filterGroups');
-        const filterIcon = document.querySelector('.filter-icon');
-
+        // Toggle filter menu
         filterToggle.addEventListener('click', () => {
             filterGroups.classList.toggle('visible');
-            filterIcon.classList.toggle('rotated');
+            filterIcon.style.transform = filterGroups.classList.contains('visible') ? 'rotate(180deg)' : 'rotate(0)';
         });
 
-        /* Remove from <script> */
-        // Chatbot functionality
-        function toggleChat() {
-            document.getElementById('chatWindow').classList.toggle('active');
-        }
-
-        document.getElementById('chatButton').addEventListener('click', toggleChat);
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            if (message) {
-                appendMessage('user', message);
-                // Simula risposta automatica
-                setTimeout(() => {
-                    const response = getAutomaticResponse(message);
-                    appendMessage('bot', response);
-                }, 1000);
-                input.value = '';
+        // Search functionality
+        const productSearch = document.getElementById('productSearch');
+        
+        // Prevent form submission on enter
+        productSearch.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
             }
+        });
+
+        // Add input event listener for real-time filtering
+        productSearch.addEventListener('input', applyFilters);
+
+        // Modify resetAllFilters to also clear search
+        function resetAllFilters() {
+            Object.keys(activeFilters).forEach(key => {
+                activeFilters[key] = 'all';
+            });
+            
+            filterButtons.forEach(btn => {
+                if(btn.getAttribute('data-value') === 'all') {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            products.forEach(product => {
+                product.style.display = 'block';
+            });
+            
+            resetFilters.classList.remove('visible');
+            productSearch.value = '';
+            applyFilters();
+        }
+        
+        // Aggiunta feedback sonoro sottile
+        function playFeedback() {
+            const audio = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAAbUAVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/4zjMAAAAAAAAAABJbmZvAAAADwAAAAMAABtQAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
+            audio.volume = 0.1;
+            audio.play();
+        }
+        document.querySelectorAll('.product-card, .nav-links a, .cta-button').forEach(el => {
+            el.addEventListener('click', playFeedback);
+        });
+        // Aggiunta lazy loading immagini
+        if ('loading' in HTMLImageElement.prototype) {
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // Fallback per browser che non supportano lazy loading
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+            document.body.appendChild(script);
         }
 
-        function appendMessage(type, text) {
-            const messages = document.getElementById('chatMessages');
-            const div = document.createElement('div');
-            div.className = `message ${type}`;
-            div.textContent = text;
-            messages.appendChild(div);
-            messages.scrollTop = messages.scrollHeight;
-        }
+    /* Filter styles - updated with yellow theme */
+    .search-box {
+        margin-bottom: 1rem;
+        position: relative;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-        function getAutomaticResponse(message) {
-            // Logica base per risposte automatiche
-            const responses = {
-                'orari': 'Siamo aperti Lun-Ven 8:00-18:00 e Sab 8:00-13:00',
-                'contatti': 'Puoi contattarci al +39 035 123 4567 o via email a info@remin.it',
-                'prodotti': 'Abbiamo una vasta gamma di formaggi freschi e stagionati. Puoi vedere tutti i nostri prodotti nella sezione dedicata.',
-                'default': 'Grazie per il tuo messaggio. Un nostro operatore ti risponderà al più presto.'
-            };
+    .search-input {
+        width: 100%;
+        padding: 0.75rem 2.5rem;
+        border: 2px solid #f39c12;
+        border-radius: 25px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: white;
+        color: #2c3e50;
+    }
 
-            message = message.toLowerCase();
-            if (message.includes('orari')) return responses.orari;
-            if (message.includes('contatt')) return responses.contatti;
-            if (message.includes('prodott')) return responses.prodotti;
-            return responses.default;
-        }
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+        transform: translateY(-1px);
+    }
 
-        /* SEO meta tags */
-        const metaDescription = document.createElement('meta');
-        metaDescription.name = "description";
-        metaDescription.content = "Remin - Dal 1998 produciamo formaggi di eccellenza seguendo le tradizioni più antiche. Scopri i nostri prodotti caseari artigianali.";
-        document.head.appendChild(metaDescription);
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #f39c12;
+        pointer-events: none;
+    }
 
-        const metaKeywords = document.createElement('meta');
-        metaKeywords.name = "keywords";
-        metaKeywords.content = "formaggio, prodotti caseari, formaggi artigianali, latticini, Bergamo, tradizione casearia";
-        document.head.appendChild(metaKeywords);
-
-        const metaOgTitle = document.createElement('meta');
-        metaOgTitle.property = "og:title";
-        metaOgTitle.content = "Remin | Formaggi e Latticini di Tradizione dal 1965";
-        document.head.appendChild(metaOgTitle);
-
-        const metaOgDescription = document.createElement('meta');
-        metaOgDescription.property = "og:description";
-        metaOgDescription.content = "Maestri casari dal 1998, produciamo formaggi di eccellenza con il latte migliore delle nostre terre.";
-        document.head.appendChild(metaOgDescription);
-
-        const metaOgImage = document.createElement('meta');
-        metaOgImage.property = "og:image";
-        metaOgImage.content = "LogoRemin.png";
-        document.head.appendChild(metaOgImage);
-
-        const metaOgUrl = document.createElement('meta');
-        metaOgUrl.property = "og:url";
-        metaOgUrl.content = "https://www.remin.it";
-        document.head.appendChild(metaOgUrl);
-
-        const linkCanonical = document.createElement('link');
-        linkCanonical.rel = "canonical";
-        linkCanonical.href = "https://www.remin.it";
-        document.head.appendChild(linkCanonical);
-    </script>
+    .search-input::placeholder {
+        color: #95a5a6;
+    }
 </body>
 </html>

@@ -13,6 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Remin - Formaggi e Latticini di Tradizione dal 1965. Scopri i nostri prodotti artigianali, la qualità certificata e le soluzioni su misura.">
     <title>Remin | Formaggi e Latticini di Tradizione dal 1965</title>
     <style>
         * {
@@ -90,7 +91,7 @@
             padding: 0.5rem 0;
             font-weight: 500;
             letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            transition: color 0.3s, transform 0.3s;
         }
 
         .nav-links a::after {
@@ -108,6 +109,7 @@
         .nav-links a:hover {
             color: #f39c12;
             transform: translateY(-2px);
+            letter-spacing: 1.5px;
         }
 
         .nav-links a:hover::after {
@@ -301,7 +303,7 @@
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease, box-shadow 0.3s;
             display: inline-block;
             box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
             animation: pulse 2s infinite;
@@ -312,8 +314,9 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
+            box-shadow: 0 12px 32px rgba(243, 156, 18, 0.5);
             background: linear-gradient(45deg, #e67e22, #d35400);
+            letter-spacing: 1px;
         }
 
         /* About Section */
@@ -399,14 +402,18 @@
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
+            max-width: 100%;
+            justify-items: center;
         }
 
         .product-card {
+            max-width: 400px; /* Aggiungi questo per limitare la larghezza massima */
+            width: 100%;      /* Assicura che occupi tutto lo spazio disponibile fino al max-width */
             background: white;
             border-radius: 20px;
             overflow: visible;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: box-shadow 0.4s, transform 0.4s, border-color 0.3s;
             position: relative;
             border: 1px solid rgba(0,0,0,0.05);
             display: flex;
@@ -418,43 +425,38 @@
         .product-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-color: rgba(243, 156, 18, 0.2);
+            border-color: #f39c12;
         }
 
         .product-image {
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: visible;
+            padding: 0;
+            height: 250px;
             background: linear-gradient(to bottom, #f8f9fa, white);
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            min-height: 200px;
-            height: 220px;
-            padding: 1.5rem;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(243,156,18,0.06);
-            z-index: 1;
         }
 
         .product-image img {
-            width: 100%;
+            /* Mostra sempre l'immagine intera, centrata */
+            width: auto;
             height: 100%;
-            max-width: 220px;
-            max-height: 180px;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             display: block;
             margin: 0 auto;
-            border-radius: 12px;
-            background: #fffdfa;
-            box-shadow: 0 2px 12px rgba(243,156,18,0.07);
-            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
+            transition: transform 0.5s, box-shadow 0.3s, filter 0.3s;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
         }
 
         .product-card:hover .product-image img {
             transform: scale(1.06) translateY(-4px);
             box-shadow: 0 8px 24px rgba(243,156,18,0.13);
+            filter: brightness(1.08) drop-shadow(0 8px 24px #f39c12aa);
         }
 
         .product-info {
@@ -532,11 +534,12 @@
 
         .certification-badges span {
             cursor: help;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s, color 0.2s;
         }
 
         .certification-badges span:hover {
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(-8deg);
+            color: #f39c12;
         }
 
         /* Le Creazioni stile personalizzato */
@@ -586,350 +589,39 @@
             background: linear-gradient(135deg, #f3e6fa 0%, #f8e9ff 100%);
         }
 
-        .product-image {
-            /* Modifica per mostrare l'immagine completa senza tagliarla */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: visible;
-            padding: 0;
-            height: 250px;
-            background: linear-gradient(to bottom, #f8f9fa, white);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .product-image img {
-            /* Mostra sempre l'immagine intera, centrata */
-            width: auto;
-            height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto;
-            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
-        }
-
-        /* Aggiungi questi nuovi stili */
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(to right, #f39c12, #e67e22);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .product-card:hover::before {
-            opacity: 1;
-        }
-
-        .product-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(0,0,0,0.05), transparent);
-        }
-
-        .product-info h3 {
-            margin-bottom: 1rem;
-            color: #f39c12;
-        }
-
-        .product-specs {
-            display: flex;
-            gap: 1rem;
-            margin: 0.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .spec-item {
-            font-size: 0.9rem;
-            background: #f8f9fa;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            color: #2c3e50;
-        }
-
-        .product-details {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-        }
-
-        .product-details h4 {
-            color: #e67e22;
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .product-details p {
-            font-size: 0.85rem;
-            line-height: 1.4;
-            color: #666;
-            margin-bottom: 0.8rem;
-        }
-
-        .certification-badges {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .certification-badges span {
-            cursor: help;
-            transition: transform 0.2s ease;
-        }
-
-        .certification-badges span:hover {
-            transform: scale(1.2);
-        }
-
-        /* Quality Section */
-        .quality {
-            padding: 5rem 0;
-            background: url('https://www.transparenttextures.com/patterns/dark-wood.png'), linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-
-        .quality .section-title {
-            color: white;  /* Cambiato da #2c3e50 a white */
-        }
-
-        .quality-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature {
-            padding: 2rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            transform: rotate(45deg);
-            transition: all 0.8s ease-out;
-            pointer-events: none;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
-        }
-
-        .feature:hover::before {
-            transform: rotate(225deg);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .feature h3 {
-            margin-bottom: 1rem;
-            color: #f39c12;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), linear-gradient(to bottom, #f8f9fa, #f1f1f1);
-            position: relative;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: #f39c12;
-            color: white;
-            transform: translateX(10px);
-        }
-
-        .contact-item span {
-            margin-right: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #ecf0f1;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #f39c12;
-            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
-        }
-
-        .submit-btn {
-            background: linear-gradient(45deg, #f39c12, #e67e22);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
             cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
+            margin-left: 1rem;
         }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: all 0.3s;
         }
-
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes slideInFromLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-50px);
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
             }
-            20% {
-                opacity: 1;
-                transform: translateX(0);
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #2c3e50;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 200px;
+                z-index: 1001;
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             }
-            80% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInFromRight {
-            0% {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            20% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            80% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes slideBackground {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
-
-        @keyframes fadeInAndSlideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
+            .nav-links.active {
+                display: flex;
             }
         }
 
@@ -1042,64 +734,60 @@
             transform: scale(1.1) translateY(-2px);
         }
 
-        .section-title {
-            position: relative;
-            overflow: hidden;
+        .certification-badges span {
+            transition: transform 0.2s, color 0.2s;
+        }
+        .certification-badges span:hover {
+            transform: scale(1.2) rotate(-8deg);
+            color: #f39c12;
         }
 
-        .section-title::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(243, 156, 18, 0.2), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+        .cta-button {
+            /* ...existing code... */
+            transition: all 0.3s ease, box-shadow 0.3s;
+            /* ...existing code... */
+        }
+        .cta-button:hover {
+            /* ...existing code... */
+            box-shadow: 0 12px 32px rgba(243, 156, 18, 0.5);
+            letter-spacing: 1px;
         }
 
-        .section-title:hover::before {
-            transform: translateX(100%);
+        .feature {
+            /* ...existing code... */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature:hover {
+            transform: translateY(-8px) scale(1.03) rotate(-1deg);
+            box-shadow: 0 8px 32px rgba(243,156,18,0.15);
         }
 
-        /* Schema markup strutturato */
-        [itemscope] {
-            display: block;
+        .nav-links a {
+            /* ...existing code... */
+            transition: color 0.3s, transform 0.3s;
         }
-        /* Remove these CSS blocks
-        .hero-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            max-width: 1000px;
-            width: 100%;
+        .nav-links a:hover {
+            /* ...existing code... */
+            letter-spacing: 1.5px;
         }
 
-        .hero-image-box {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            aspect-ratio: 1;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+        .product-card {
+            /* ...existing code... */
+            transition: box-shadow 0.4s, transform 0.4s, border-color 0.3s;
+        }
+        .product-card:hover {
+            /* ...existing code... */
+            border-color: #f39c12;
         }
 
-        .hero-image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+        .product-image img {
+            /* ...existing code... */
+            transition: transform 0.5s, box-shadow 0.3s, filter 0.3s;
         }
-
-        .hero-image-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        .product-card:hover .product-image img {
+            /* ...existing code... */
+            filter: brightness(1.08) drop-shadow(0 8px 24px #f39c12aa);
         }
-
-        .hero-image-box:hover img {
-            transform: scale(1.1);
-        }
-        */
 
         /* Filter styles - updated with yellow theme */
         .filter-container {
@@ -1220,148 +908,60 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
         }
 
-        .lightbox-content {
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
             max-width: 90%;
             max-height: 90vh;
-            position: relative;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 80vh;
             object-fit: contain;
-            display: block;
-            margin: 0 auto;
             border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
         }
 
-        .reset-filters {
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: #e74c3c;
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
             color: white;
-            border: none;
-            border-radius: 4px;
+            font-size: 40px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            display: none;
+            z-index: 1001;
+            transition: transform 0.3s ease;
         }
 
-        .reset-filters.visible {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+        .lightbox-close:hover {
+            transform: scale(1.1);
         }
 
-        .reset-filters:hover {
-            background: #c0392b;
-            transform: translateY(-1px);
+        .product-image {
+            cursor: zoom-in;
         }
-
-        /* Remove from <style> */
-/* Chatbot styles */
-.chatbot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.chat-button {
-    background: #f39c12;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
-
-.chat-button:hover {
-    transform: scale(1.1);
-}
-
-.chat-window {
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    width: 300px;
-    height: 400px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-    display: none;
-    overflow: hidden;
-}
-
-.chat-window.active {
-    display: flex;
-    flex-direction: column;
-}
-
-.chat-header {
-    background: #f39c12;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chat-messages {
-    flex-grow: 1;
-    padding: 1rem;
-    overflow-y: auto;
-}
-
-.chat-input {
-    padding: 1rem;
-    border-top: 1px solid #eee;
-    display: flex;
-    gap: 0.5rem;
-}
-
-.chat-input input {
-    flex-grow: 1;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-}
-
-.chat-input button {
-    background: #f39c12;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-}
     </style>
 </head>
 <body>
+    <a href="#home" class="skip-link">Salta al contenuto principale</a>
     <div class="loading" id="loading">
         <div class="spinner"></div>
     </div>
-
     <header>
-        <nav>
+        <nav aria-label="Navigazione principale">
             <a href="#home" class="logo">
                 <img src="LogoRemin.png" alt="Remin Logo">
             </a>
-            <ul class="nav-links">
+            <div class="hamburger" id="hamburgerMenu" aria-label="Apri menu di navigazione" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">Chi Siamo</a></li>
+                <li><a href="#about">Le soluzioni</a></li>
                 <li><a href="#products">Prodotti</a></li>
                 <li><a href="#quality">Qualità</a></li>
                 <li><a href="#contact">Contatti</a></li>
@@ -1374,34 +974,35 @@
             <a href="LogoRemin.png" class="img-link">
                 <img src="LogoRemin.png" alt="Remin Logo" class="hero-logo">
             </a>
-            <div class="hero-subtitle">Maestri Casari dal 1959</div>
-            <p class="hero-description" style="color: #f39c12; font-size: 1.5rem; max-width: 800px; margin: 0 auto 2rem auto; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); background: rgba(0,0,0,0.4); padding: 2rem; border-radius: 15px;">
-                Dal 1959, il giovane Remin dal suo piccolo allevamento ovicaprino produceva e commercializzava formaggi sui mercati locali di Alba e Savona. L'azienda negli anni si è evoluta e si è specializzata sui formaggi freschi.
-            </p>
+            <div class="hero-subtitle">L'azienda</div>
+            <div class="home-text" style="color: #fff; background: rgba(44,62,80,0.85); border-radius: 18px; padding: 2rem; margin: 0 auto 2rem auto; max-width: 700px; font-size: 1.15rem; box-shadow: 0 2px 12px rgba(44,62,80,0.10);">
+                <h2 style="color:#f39c12; margin-bottom:1rem; font-size:1.5rem;">L'azienda</h2>
+                <p>Il Signor Remin, inizia la produzione di formaggi da un’antica tradizione di famiglia.<br>
+                L’azienda evolve negli anni passando il testimone al figlio Gianni.<br>
+                Negli anni 2000 l’azienda si struttura per soddisfare le esigenze del mercato.</p>
+                <p>I punti fondamentali sono:</p>
+                <ul style="margin-left:1.5rem; line-height:2;">
+                    <li>La flessibilità produttiva "su misura"</li>
+                    <li>Il peso fisso sui formaggi freschi</li>
+                    <li>Qualità e Sicurezza Alimentare</li>
+                </ul>
+            </div>
             <a href="#products" class="cta-button">Scopri i Nostri Formaggi</a>
         </div>
     </section>
 
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">Chi siamo</h2>
+            <h2 class="section-title">Le Soluzioni</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>
-                        <strong>Remin</strong> nasce nel 1998 dalla passione di Giuseppe Remin per l'arte casearia. 
-                        Quello che iniziò come un piccolo caseificio di famiglia è diventato oggi un punto di riferimento 
-                        per la produzione di formaggi di alta qualità.
-                    </p>
-                    <p>
-                        La nostra filosofia si basa su tre pilastri fondamentali: <strong>tradizione</strong>, 
-                        <strong>qualità</strong> e <strong>innovazione</strong>. Ogni formaggio che produciamo 
-                        racconta la storia della nostra terra e del nostro impegno verso l'eccellenza.
-                    </p>
-                    <p>
-                        Oggi, guidati dalla terza generazione della famiglia Remin, continuiamo a selezionare 
-                        il latte migliore dai nostri allevatori di fiducia e a perfezionare le tecniche di 
-                        stagionatura nelle nostre cave naturali.
-                    </p>
+                    <ul style="font-size:1.15rem; line-height:2; list-style:disc; margin-left:1.5rem;">
+                        <li>Confezioni ‘’Su Misura’’</li>
+                        <li>Peso/Prezzo Fisso da Banco Freschi</li>
+                        <li>Shelf Life</li>
+                        <li>Riduzione Plastica</li>
+                        <li>Qualità e Sicurezza Alimentare Certificata</li>
+                    </ul>
                 </div>
                 <div class="about-image">
                     <div class="cheese-visual">
@@ -1454,6 +1055,8 @@
                             <button class="filter-btn" data-filter="type" data-value="fresh">Freschi peso fisso</button>
                             <button class="filter-btn" data-filter="type" data-value="mold">Muffettati</button>
                             <button class="filter-btn" data-filter="type" data-value="creations">Le Creazioni</button>
+                            <button class="filter-btn" data-filter="type" data-value="toma">Tome</button>
+                            <button class="filter-btn" data-filter="type" data-value="erborinati">Erborinati</button>
                         </div>
                     </div>
                     <div class="filter-group">
@@ -1496,6 +1099,7 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <div class="product-card" data-weight="10" data-type="fresh" data-milk="goat">
@@ -1518,6 +1122,7 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <!-- 20g -->
@@ -1541,6 +1146,7 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <!-- 30g -->
@@ -1589,6 +1195,7 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <!-- 65g -->
@@ -1614,12 +1221,13 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <div class="product-card" data-weight="65" data-type="fresh" data-milk="goat">
                     <div class="product-image">
-                        <a href="SpecTartufo.png" class="img-link">
-                            <img src="SpecTartufo.png" alt="Specialità al Tartufo" style="width: 100%; height: 100%; object-fit: contain;">
+                        <a href="Specialità al Tartufo.png" class="img-link">
+                            <img src="Specialità al Tartufo.png" alt="Specialità al Tartufo">
                         </a>
                     </div>
                     <div class="product-info">
@@ -1636,6 +1244,7 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <div class="product-card" data-weight="65" data-type="fresh" data-milk="goat">
@@ -1658,6 +1267,7 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <!-- 100g -->
@@ -1681,13 +1291,14 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <!-- 130g -->
                 <div class="product-card" data-weight="130" data-type="fresh" data-milk="goat">
                     <div class="product-image">
-                        <a href="Fiordalisio.png" class="img-link">
-                            <img src="Fiordalisio.png" alt="Fiordaliso" style="width: 100%; height: 100%; object-fit: contain;">
+                        <a href="Fiordaliso.png" class="img-link">
+                            <img src="Fiordaliso.png" alt="Fiordaliso">
                         </a>
                     </div>
                     <div class="product-info">
@@ -1704,6 +1315,7 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <!-- 180g -->
@@ -1727,6 +1339,29 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
+                    </div>
+                </div>
+                <!-- 230g -->
+                <div class="product-card" data-weight="230" data-type="fresh" data-milk="goat">
+                    <div class="product-image">
+                        <a href="Robiolina.png" class="img-link">
+                            <img src="Robiolina.png" alt="Robiolina in Cera d'Api">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Robiolina in Cera d'Api</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">Latte caprino</span>
+                            <span class="spec-item">⚖️ 230 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Stagionatura: Fresco</span>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Filiera Controllata">✓</span>
+                        </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <!-- 500g -->
@@ -1755,37 +1390,142 @@
                         </div>
                     </div>
                 </div>
-                <!-- 2000g -->
-                <div class="product-card" data-weight="2000" data-type="mold" data-weight-type="variable" data-milk="mix">
+                <!-- 1600g -->
+                <div class="product-card" data-weight="1600" data-type="erborinati" data-milk="cow">
                     <div class="product-image">
-                        <a href="DolceCapra.png" class="img-link">
-                            <img src="DolceCapra.png" alt="Toma Bianca 'dolce capra'" style="width: 100%; height: 100%; object-fit: contain;">
+                        <a href="blu mirtillo.png" class="img-link">
+                            <img src="blu mirtillo.png" alt="Blu Mirtillo">
                         </a>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">Toma Bianca "dolce capra"</h3>
+                        <h3 class="product-title">Blu Mirtillo</h3>
                         <div class="product-specs">
-                            <span class="spec-item">🥛 Latte di capra</span>
-                            <span class="spec-item">⚖️ 2000 g</span>
+                            <span class="spec-item">Latte vaccino</span>
+                            <span class="spec-item">⚖️ 1600 g</span>
                             <span class="spec-item">📦 conf.: 1 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: 30 giorni</span>
-                        </div>
-                        <div class="product-details">
-                            <h4>Gusto</h4>
-                            <p>Nuovo ed originale , moderno per freschezza di gusto e complessita di aromi dalla pasta compatta e scioglievole.</p>
+                            <span class="spec-item">🕒 Stagionatura: Erborinato</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Muffettato"></span>
-                            <span title="Filiera Controllata">✓ </span>
+                            <span title="Filiera Controllata">✓</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2000g -->
+                <div class="product-card" data-weight="2000" data-type="mold" data-milk="goat">
+                    <div class="product-image">
+                        <a href="Robiolone.png" class="img-link">
+                            <img src="Robiolone.png" alt="Robiolone">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Robiolone</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">20% latte di capra</span>
+                            <span class="spec-item">⚖️ 2000 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Stagionatura: Muffettato</span>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Filiera Controllata">✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-weight="2000" data-type="fresh" data-milk="goat">
+                    <div class="product-image">
+                        <a href="Robiolone mirtillo e pistacchio.png" class="img-link">
+                            <img src="Robiolone mirtillo e pistacchio.png" alt="Robiolone Mirtillo e Pistacchio">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Robiolone Mirtillo e Pistacchio</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">20% latte di capra</span>
+                            <span class="spec-item">⚖️ 2000 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Stagionatura: Fresco</span>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Filiera Controllata">✓</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2500g -->
+                <div class="product-card" data-weight="2500" data-type="erborinati" data-milk="cow">
+                    <div class="product-image">
+                        <a href="ratafia.png" class="img-link">
+                            <img src="ratafia.png" alt="Blu & Ratafia al Lampone con Fragola">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Blu & Ratafia al Lampone con Fragola</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">Latte vaccino</span>
+                            <span class="spec-item">⚖️ 2500 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Stagionatura: Erborinato</span>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Filiera Controllata">✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-weight="2500" data-type="erborinati" data-milk="cow">
+                    <div class="product-image">
+                        <a href="Grappa.png" class="img-link">
+                            <img src="Grappa.png" alt="Blu & Grappa">
+                        </a>
+                                       </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Blu & Grappa</h3>
+                        <div class="product-specs">
+                                                       <span class="spec-item">Latte vaccino</span>
+                            <span class="spec-item">⚖️ 2500 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Stagionatura: Erborinato</span>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Filiera Controllata">✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-weight="2500" data-type="erborinati" data-weight-type="variable" data-milk="sheep">
+                    <div class="product-image">
+                        <a href="Verde.png" class="img-link">
+                            <img src="Verde.png" alt="Verde di pecora">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Verde di pecora</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 Latte di pecora</span>
+                            <span class="spec-item">⚖️ 2500 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Stagionatura: 45 giorni</span>
+                        </div>
+                        <div class="product-details">
+                            <h4>Gusto</h4>
+                            <p>Un erborinato di pecora dal carattere deciso, con venature verdi che si sviluppano naturalmente durante la stagionatura, conferendo un sapore intenso e persistente.</p>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Erborinato">E</span>
+                            <span title="Filiera Controllata">✓</span>
                         </div>
                     </div>
                 </div>
                 <!-- 4000g -->
                 <div class="product-card" data-weight="4000" data-type="mold" data-weight-type="variable" data-milk="cow">
                     <div class="product-image">
-                        <a href="Strachinata.png" class="img-link">
-                            <img src="Strachinata.png" alt="Strachinata" style="width: 100%; height: 100%; object-fit: contain;">
+                        <a href="Toma Stracchinata.png" class="img-link">
+                            <img src="Toma Stracchinata.png" alt="Strachinata">
                         </a>
                     </div>
                     <div class="product-info">
@@ -1802,8 +1542,59 @@
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Muffettato"></span>
-                            <span title="Filiera Controllata">✓ </span>
+                            <span title="Muffettato">M</span>
+                            <span title="Filiera Controllata">✓</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 5000g -->
+                <div class="product-card" data-weight="5000" data-type="erborinati" data-milk="goat">
+                    <div class="product-image">
+                        <a href="Blu di capra.png" class="img-link">
+                            <img src="Blu di capra.png" alt="Blu di capra">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Blu di capra</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">Latte di capra</span>
+                            <span class="spec-item">⚖️ 5000 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Stagionatura: 60 giorni</span>
+                        </div>
+                        <div class="product-details">
+                            <h4>Gusto</h4>
+                            <p>Un formaggio erborinato di capra dal sapore deciso e avvolgente, con venature blu che ne arricchiscono il carattere.</p>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Erborinato">E</span>
+                            <span title="Filiera Controllata">✓</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 6000g -->
+                <div class="product-card" data-weight="6000" data-type="toma" data-weight-type="variable" data-milk="cow">
+                    <div class="product-image">
+                        <a href="La tenera.png" class="img-link">
+                            <img src="La tenera.png" alt="La tenera di campagna">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">La tenera di campagna</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">🥛 Latte vaccino</span>
+                            <span class="spec-item">⚖️ 6000 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Stagionatura: 20 giorni</span>
+                        </div>
+                        <div class="product-details">
+                            <h4>Gusto</h4>
+                            <p>Una toma dalla pasta morbida e delicata, dal sapore dolce e aromatico che richiama i profumi del latte fresco di montagna.</p>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Filiera Controllata">✓</span>
                         </div>
                     </div>
                 </div>
@@ -1811,333 +1602,324 @@
         </div>
     </section>
 
-    <section id="quality" class="quality">
+    <section id="quality" class="quality wood-bg">
         <div class="container">
             <h2 class="section-title">La Nostra Qualità</h2>
             <div class="quality-features">
-                <div class="feature">
-                    <span class="feature-icon">📦</span>
+                <article class="feature">
+                    <span class="feature-icon" aria-hidden="true">📦</span>
                     <h3>Confezioni su Misura</h3>
-                    <p>Offriamo diverse dimensioni e formati per soddisfare ogni esigenza, dal piccolo consumo alla ristorazione</p>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">⚖️</span>
+                    <p>Offriamo diverse dimensioni e formati per soddisfare ogni esigenza, dal piccolo consumo alla ristorazione.</p>
+                </article>
+                <article class="feature">
+                    <span class="feature-icon" aria-hidden="true">⚖️</span>
                     <h3>Peso Fisso</h3>
-                    <p>Garantiamo pesi standardizzati per ogni formato, assicurando uniformità e precisione in ogni confezione</p>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">🥛</span>
+                    <p>Garantiamo pesi standardizzati per ogni formato, assicurando uniformità e precisione in ogni confezione.</p>
+                </article>
+                <article class="feature">
+                    <span class="feature-icon" aria-hidden="true">🥛</span>
                     <h3>Varietà di Latte</h3>
-                    <p>Selezioniamo i migliori latti vaccini, caprini e misti per creare formaggi unici e di carattere</p>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">✅</span>
+                    <p>Selezioniamo i migliori latti vaccini, caprini e misti per creare formaggi unici e di carattere.</p>
+                </article>
+                <article class="feature">
+                    <span class="feature-icon" aria-hidden="true">✅</span>
                     <h3>Certificazione ISO 22000</h3>
-                    <p>Garantiamo i più alti standard di sicurezza alimentare con certificazione internazionale</p>
-                </div>
+                    <p>Garantiamo i più alti standard di sicurezza alimentare con certificazione internazionale.</p>
+                </article>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="contact" class="contact wood-bg">
         <div class="container">
             <h2 class="section-title">Contattaci</h2>
             <div class="contact-content">
-                <div class="contact-info">
+                <address class="contact-info">
                     <h3>Informazioni di Contatto</h3>
                     <div class="contact-item">
-                        <span>📍</span>
+                        <span aria-hidden="true">📍</span>
                         <div>
-                            <strong>Indirizzo:</strong><br>
-                            Via Caseificio, 123<br>
-                            24020 Bergamo (BG)
+                            <strong>Indirizzo:</strong> Via Roma 123, Alba (CN), Italia
                         </div>
                     </div>
                     <div class="contact-item">
-                        <span>📞</span>
+                        <span aria-hidden="true">📞</span>
                         <div>
-                            <strong>Telefono:</strong><br>
-                            +39 035 123 4567
+                            <strong>Telefono:</strong> <a href="tel:+390173123456" style="color:inherit;text-decoration:none;">+39 0173 123456</a>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <span>📧</span>
+                        <span aria-hidden="true">✉️</span>
                         <div>
-                            <strong>Email:</strong><br>
-                            info@remin.it
+                            <strong>Email:</strong> <a href="mailto:info@remin.com" style="color:inherit;text-decoration:none;">info@remin.com</a>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <span>🕒</span>
-                        <div>
-                            <strong>Orari:</strong><br>
-                                                                                                             Lun-Ven: 8:00-18:00<br>
-                            Sab: 8:00-13:00
-                        </div>
+                </address>
+                <form class="contact-form" id="ajaxForm" autocomplete="on" novalidate>
+                    <div id="formMessage" style="display:none; margin-bottom:1rem;" class="alert" role="alert"></div>
+                    <div class="form-group">
+                        <label for="name">Nome <span aria-hidden="true" style="color:#e74c3c">*</span></label>
+                        <input type="text" id="name" name="name" required minlength="2" maxlength="50" autocomplete="name" aria-required="true">
                     </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Invia un Messaggio</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Nome *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefono</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Messaggio *</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Invia Messaggio</button>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email <span aria-hidden="true" style="color:#e74c3c">*</span></label>
+                        <input type="email" id="email" name="email" required autocomplete="email" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Messaggio <span aria-hidden="true" style="color:#e74c3c">*</span></label>
+                        <textarea id="message" name="message" rows="4" required minlength="10" maxlength="1000" autocomplete="off" aria-required="true"></textarea>
+                    </div>
+                                       <button type="submit" class="submit-btn">Invia Messaggio</button>
+                </form>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Remin. Tutti i diritti riservati. | P.IVA: 12345678901 | Made with ❤️ in Italy</p>
+            <p>&copy; 2023 Remin. Tutti i diritti riservati.</p>
+            <div class="social-links">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">LinkedIn</a>
+            </div>
         </div>
     </footer>
 
-    <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
-        <div class="lightbox-content">
-            <img src="" alt="Enlarged Image">
-            <div class="lightbox-nav">
-                <button class="lightbox-btn prev">←</button>
-                <button class="lightbox-btn next">→</button>
+    <!-- Chatbot HTML structure -->
+    <div class="chatbot" aria-label="Chat di supporto Remin">
+        <div class="chat-button">
+            ?
+        </div>
+        <div class="chat-window">
+            <div class="chat-header">
+                <div>Supporto Remin</div>
+                <div class="close-chat" style="cursor:pointer;">&times;</div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be appended here by JavaScript -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userMessage" placeholder="Scrivi un messaggio..." />
+                <button id="sendMessage">Invia</button>
             </div>
         </div>
     </div>
 
-    <a href="#main" class="skip-link">Salta al contenuto principale</a>
+    <!-- Add this before the script tag -->
+    <div class="lightbox" id="imageLightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-image" src="" alt="">
+    </div>
 
     <script>
-        // Loading animation
-        window.addEventListener('load', function() {
-            const loading = document.getElementById('loading');
-            document.body.style.overflow = 'hidden';
-            
-            setTimeout(() => {
-                loading.style.opacity = '0';
-                document.body.style.overflow = '';
-                
-                setTimeout(() => {
-                    loading.style.display = 'none';
-                }, 500);
-            }, 1500);
-        });
-
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                               }
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Grazie per il tuo messaggio! Ti contatteremo presto.');
-            this.reset();
-        });
-
-        // Enhanced scroll animations
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                   
-                    entry.target.classList.add('visible');
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.style.opacity = '1';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('section');
-            sectionObserver.observe(section);
-        });
-
-        // Header background on scroll
-        window.addEventListener('scroll', function() {
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
         });
 
-        // Product card hover effects
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterValue = button.getAttribute('data-filter');
+                const filterType = button.getAttribute('data-value');
+
+                // Toggle active class
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter products
+                productCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute(`data-${filterValue}`) === filterType) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+        });
+
+        // Search functionality
+        document.getElementById('productSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            productCards.forEach(card => {
+                const title = card.querySelector('.product-title').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
             });
+        });
+
+        // Reset filters
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            filterButtons[0].classList.add('active');
+            productCards.forEach(card => card.style.display = 'block');
+            document.getElementById('productSearch').value = '';
         });
 
         // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = lightbox.querySelector('img');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxContent = document.querySelector('.lightbox-content');
+        const imgLinks = document.querySelectorAll('.img-link');
 
-        // Aggiungi la gestione del tasto ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                lightbox.style.display = 'none';
-            }
-        });
-
-       
-
-        // Aggiorna l'evento click sulle immagini
-        document.querySelectorAll('.product-image img').forEach((image, index) => {
-            image.style.cursor = 'pointer';  // Aggiungi il cursore pointer
-            image.addEventListener('click', (e) => {
+        imgLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                lightboxImg.src = image.src;
+                const imgSrc = link.getAttribute('href');
+                lightboxContent.querySelector('img').src = imgSrc;
                 lightbox.style.display = 'flex';
             });
         });
 
-        // Chiudi il lightbox quando si clicca fuori dall'immagine
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.style.display = 'none';
+            if (e.target === lightboxContent.querySelector('img')) {
+                return;
+            }
+            lightbox.style.display = 'none';
+        });
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        hamburger.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                navLinks.classList.toggle('active');
             }
         });
 
-        // Previeni la chiusura quando si clicca sull'immagine
-        lightboxImg.addEventListener('click', (e) => {
-            e.stopPropagation();
+        // Chatbot functionality
+        const chatButton = document.querySelector('.chat-button');
+        const chatWindow = document.querySelector('.chat-window');
+        const closeChat = document.querySelector('.close-chat');
+        const sendMessage = document.getElementById('sendMessage');
+        const userMessage = document.getElementById('userMessage');
+        const chatMessages = document.getElementById('chatMessages');
+
+        chatButton.addEventListener('click', () => {
+            chatWindow.classList.toggle('active');
+            chatButton.classList.toggle('active');
         });
 
-        // === FILTRI E RICERCA UNIFICATI ===
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const products = document.querySelectorAll('.product-card');
-        const resetFilters = document.getElementById('resetFilters');
-        // Rimuovi filterToggle/filterGroups/filterIcon se non servono più
-        const productSearch = document.getElementById('productSearch');
-
-        // Object to track active filters
-        const activeFilters = {
-            weight: 'all',
-            weightType: 'all',
-            type: 'all',
-            milk: 'all'
-        };
-
-        function applyFilters() {
-            const searchTerm = productSearch.value.trim().toLowerCase();
-
-            let anyFilterActive = searchTerm.length > 0;
-            Object.keys(activeFilters).forEach(key => {
-                if (activeFilters[key] !== 'all') anyFilterActive = true;
-            });
-
-            products.forEach(product => {
-                // Cerca anche nel titolo e nella descrizione
-                const title = product.querySelector('.product-title')?.textContent?.toLowerCase() || '';
-                const description = product.querySelector('.product-description')?.textContent?.toLowerCase() || '';
-
-                // Filtri
-                const weight = product.getAttribute('data-weight');
-                const weightType = product.getAttribute('data-weight-type') || 'fixed';
-                const type = product.getAttribute('data-type');
-                const milk = product.getAttribute('data-milk') || 'mixed';
-
-                // Ricerca: match se il termine è incluso nel titolo o descrizione
-                const matchSearch = !searchTerm || title.includes(searchTerm) || description.includes(searchTerm);
-
-                // Filtri classici
-                const matchWeight = activeFilters.weight === 'all' || weight === activeFilters.weight;
-                const matchWeightType = activeFilters.weightType === 'all' || weightType === activeFilters.weightType;
-                const matchType = activeFilters.type === 'all' || type === activeFilters.type;
-                const matchMilk = activeFilters.milk === 'all' || milk === activeFilters.milk;
-
-                if (matchSearch && matchWeight && matchWeightType && matchType && matchMilk) {
-                    product.style.display = '';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-
-            resetFilters.classList.toggle('visible', anyFilterActive);
-        }
-
-        function resetAllFilters() {
-            Object.keys(activeFilters).forEach(key => {
-                activeFilters[key] = 'all';
-            });
-
-            filterButtons.forEach(btn => {
-                if(btn.getAttribute('data-value') === 'all') {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            productSearch.value = '';
-            applyFilters();
-        }
-
-        // Filter button click handlers
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const filterType = button.getAttribute('data-filter');
-                const filterValue = button.getAttribute('data-value');
-
-                const groupButtons = button.closest('.filter-buttons').querySelectorAll('.filter-btn');
-                groupButtons.forEach(btn => btn.classList.remove('active'));
-
-                button.classList.add('active');
-                activeFilters[filterType] = filterValue;
-
-                applyFilters();
-            });
+        closeChat.addEventListener('click', () => {
+            chatWindow.classList.remove('active');
+            chatButton.classList.remove('active');
         });
 
-        // Reset filters button handler
-        resetFilters.addEventListener('click', resetAllFilters);
-
-        // Ricerca prodotti integrata con i filtri
-        productSearch.addEventListener('input', function() {
-            applyFilters();
-        });
-
-        // Prevent form submission on enter
-        productSearch.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
+        sendMessage.addEventListener('click', () => {
+            const messageText = userMessage.value.trim();
+            if (messageText !== '') {
+                appendMessage('user', messageText);
+                userMessage.value = '';
+                // Simulate bot response
+                setTimeout(() => {
+                    appendMessage('bot', 'Grazie per il tuo messaggio! Ti risponderemo al più presto.');
+                }, 1000);
             }
         });
 
-        // Applica i filtri all'avvio per mostrare tutto
-        applyFilters();
+        function appendMessage(sender, text) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', sender);
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Migliora la validazione del form contatti
+        document.getElementById('ajaxForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            const formMessage = document.getElementById('formMessage');
+            let valid = true;
+            let msg = '';
+
+            if (!name.value.trim() || name.value.length < 2) {
+                valid = false;
+                msg += 'Inserisci un nome valido.<br>';
+            }
+            if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                valid = false;
+                msg += 'Inserisci un indirizzo email valido.<br>';
+            }
+            if (!message.value.trim() || message.value.length < 10) {
+                valid = false;
+                msg += 'Il messaggio deve contenere almeno 10 caratteri.<br>';
+            }
+
+            if (!valid) {
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#e74c3c';
+                formMessage.innerHTML = msg;
+                return;
+            }
+
+            // Simula invio riuscito
+            formMessage.style.display = 'block';
+            formMessage.style.color = '#27ae60';
+            formMessage.innerHTML = 'Messaggio inviato con successo! Ti risponderemo al più presto.';
+            this.reset();
+        });
+
+        // Image lightbox functionality
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImg = lightbox.querySelector('.lightbox-image');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+        const productImages = document.querySelectorAll('.product-image img');
+
+        productImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 </body>
 </html>

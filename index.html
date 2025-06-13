@@ -1717,7 +1717,6 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
@@ -1734,73 +1733,97 @@
             }
         });
 
-        // Filter functionality
+        // --- FILTRI E RICERCA ---
         const filterButtons = document.querySelectorAll('.filter-btn');
         const productCards = document.querySelectorAll('.product-card');
+        const productSearch = document.getElementById('productSearch');
+        let activeFilters = {
+            type: 'all',
+            milk: 'all'
+            // weight: 'all' // se vuoi aggiungere anche il filtro peso
+        };
+
+        function updateProductVisibility() {
+            const searchTerm = productSearch.value.toLowerCase();
+            productCards.forEach(card => {
+                const title = card.querySelector('.product-title').textContent.toLowerCase();
+                const matchesSearch = title.includes(searchTerm);
+                const matchesType = activeFilters.type === 'all' || card.getAttribute('data-type') === activeFilters.type;
+                const matchesMilk = activeFilters.milk === 'all' || card.getAttribute('data-milk') === activeFilters.milk;
+                // const matchesWeight = activeFilters.weight === 'all' || card.getAttribute('data-weight') === activeFilters.weight;
+                card.style.display = (matchesSearch && matchesType && matchesMilk) ? 'block' : 'none';
+            });
+        }
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const filterValue = button.getAttribute('data-filter');
-                const filterType = button.getAttribute('data-value');
-
-                // Toggle active class
-                filterButtons.forEach(btn => btn.classList.remove('active'));
+                const filterType = button.getAttribute('data-filter');
+                const value = button.getAttribute('data-value');
+                // Aggiorna stato attivo solo nel gruppo corrente
+                const group = button.closest('.filter-group');
+                group.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-
-                // Filter products
-                productCards.forEach(card => {
-                    if (filterValue === 'all' || card.getAttribute(`data-${filterValue}`) === filterType) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                // Aggiorna filtro attivo
+                activeFilters[filterType] = value;
+                updateProductVisibility();
             });
         });
 
-        // Search functionality
-        document.getElementById('productSearch').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            productCards.forEach(card => {
-                const title = card.querySelector('.product-title').textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+        productSearch.addEventListener('input', updateProductVisibility);
 
         // Reset filters
         document.getElementById('resetFilters').addEventListener('click', () => {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            filterButtons[0].classList.add('active');
-            productCards.forEach(card => card.style.display = 'block');
-            document.getElementById('productSearch').value = '';
+            activeFilters = {
+                type: 'all',
+                milk: 'all'
+                // weight: 'all'
+            };
+            filterButtons.forEach(btn => {
+                if (btn.getAttribute('data-value') === 'all') {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            productSearch.value = '';
+            updateProductVisibility();
         });
 
-        // Lightbox functionality
-        const lightbox = document.querySelector('.lightbox');
-        const lightboxContent = document.querySelector('.lightbox-content');
-        const imgLinks = document.querySelectorAll('.img-link');
+        // --- LIGHTBOX ---
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImg = lightbox.querySelector('.lightbox-image');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+        const productImages = document.querySelectorAll('.product-image img');
 
-        imgLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const imgSrc = link.getAttribute('href');
-                lightboxContent.querySelector('img').src = imgSrc;
-                lightbox.style.display = 'flex';
+        productImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
         });
 
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightboxContent.querySelector('img')) {
-                return;
+            if (e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
             }
-            lightbox.style.display = 'none';
         });
 
-        // Hamburger menu functionality
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // --- HAMBURGER MENU ---
         const hamburger = document.getElementById('hamburgerMenu');
         const navLinks = document.getElementById('navLinks');
         hamburger.addEventListener('click', () => {
@@ -1812,7 +1835,7 @@
             }
         });
 
-        // Chatbot functionality
+        // --- CHATBOT ---
         const chatButton = document.querySelector('.chat-button');
         const chatWindow = document.querySelector('.chat-window');
         const closeChat = document.querySelector('.close-chat');
@@ -1835,7 +1858,6 @@
             if (messageText !== '') {
                 appendMessage('user', messageText);
                 userMessage.value = '';
-                // Simulate bot response
                 setTimeout(() => {
                     appendMessage('bot', 'Grazie per il tuo messaggio! Ti risponderemo al più presto.');
                 }, 1000);
@@ -1850,7 +1872,7 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Migliora la validazione del form contatti
+        // --- FORM CONTATTI ---
         document.getElementById('ajaxForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('name');
@@ -1885,40 +1907,6 @@
             formMessage.style.color = '#27ae60';
             formMessage.innerHTML = 'Messaggio inviato con successo! Ti risponderemo al più presto.';
             this.reset();
-        });
-
-        // Image lightbox functionality
-        const lightbox = document.getElementById('imageLightbox');
-        const lightboxImg = lightbox.querySelector('.lightbox-image');
-        const lightboxClose = lightbox.querySelector('.lightbox-close');
-        const productImages = document.querySelectorAll('.product-image img');
-
-        productImages.forEach(img => {
-            img.addEventListener('click', () => {
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target !== lightboxImg) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        lightboxClose.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
         });
     </script>
 </body>

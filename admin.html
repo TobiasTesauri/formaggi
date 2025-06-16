@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Remin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header>
+        <nav aria-label="Navigazione principale">
+            <a href="index.html" class="logo">
+                <img src="LogoRemin.png" alt="Remin Logo">
+            </a>
+            <div class="hamburger" id="hamburgerMenu" aria-label="Apri menu di navigazione" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">Le soluzioni</a></li>
+                <li><a href="index.html#products">Prodotti</a></li>
+                <li><a href="index.html#quality">Qualità</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-main">
+        <!-- Login overlay -->
+        <div id="login-overlay">
+            <div class="login-container">
+                <h2>Accesso Area Admin</h2>
+                
+                <div id="login-error" class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Username o password non validi</span>
+                </div>
+                
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fas fa-user"></i> Username
+                        </label>
+                        <input type="text" id="username" name="username" required autocomplete="username" placeholder="Inserisci username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Inserisci password">
+                    </div>
+                    
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Ricordami</label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="login-btn">
+                            <i class="fas fa-sign-in-alt"></i> Accedi
+                        </button>
+                        <a href="index.html" class="cancel-link">
+                            <i class="fas fa-times"></i> Annulla
+                        </a>
+                    </div>
+                    
+                    <div class="login-help">
+                        <p>Credenziali demo: <strong>admin</strong> / <strong>formaggio2023</strong></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Admin Dashboard -->
+        <div id="admin-dashboard" class="hidden">
+            <div class="dashboard-header">
+                <h1><i class="fas fa-cheese"></i> Admin Dashboard</h1>
+                <div class="user-controls">
+                    <span class="user-greeting">Benvenuto, <strong>Admin</strong></span>
+                    <button id="logout-btn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Esci
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Admin Navigation Tabs -->
+            <div class="admin-nav">
+                <button class="tab-btn active" data-tab="products-tab">
+                    <i class="fas fa-cheese"></i> Prodotti
+                </button>
+                <button class="tab-btn" data-tab="messages-tab">
+                    <i class="fas fa-envelope"></i> Messaggi
+                    <span class="badge" id="unread-count">0</span>
+                </button>
+                <button class="tab-btn" data-tab="settings-tab">
+                    <i class="fas fa-cog"></i> Impostazioni
+                </button>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="tab-contents">
+                <!-- Products Tab -->
+                <div id="products-tab" class="tab-content active">
+                    <div class="tab-header">
+                        <h2>Gestione Prodotti</h2>
+                        <button class="action-btn" id="add-product-btn">
+                            <i class="fas fa-plus"></i> Nuovo Prodotto
+                        </button>
+                    </div>
+                    
+                    <div class="products-grid">
+                        <div class="product-form-container hidden" id="product-form-container">
+                            <h3 id="form-title">Aggiungi Prodotto</h3>
+                            <form id="product-form">
+                                <input type="hidden" id="product-id">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="product-name">Nome Prodotto</label>
+                                        <input type="text" id="product-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-category">Categoria</label>
+                                        <select id="product-category" required>
+                                            <option value="fresh">Freschi peso fisso</option>
+                                            <option value="mold">Muffettati</option>
+                                            <option value="creations">Le Creazioni</option>
+                                            <option value="toma">Tome</option>
+                                            <option value="erborinati">Erborinati</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="product-milk">Tipo di Latte</label>
+                                        <select id="product-milk" required>
+                                            <option value="cow">Mucca</option>
+                                            <option value="goat">Capra</option>
+                                            <option value="mix">Misto</option>
+                                            <option value="sheep">Pecora</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-weight">Peso</label>
+                                        <input type="text" id="product-weight" placeholder="es. 100g">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="product-image">Immagine</label>
+                                        <input type="file" id="product-image" accept="image/*">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-stock">Disponibilità</label>
+                                        <input type="number" id="product-stock" min="0" value="10">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="save-btn">
+                                        <i class="fas fa-save"></i> Salva
+                                    </button>
+                                    <button type="button" class="cancel-btn" id="cancel-product">
+                                        <i class="fas fa-times"></i> Annulla
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="product-list">
+                            <div class="product-filters">
+                                <input type="text" id="product-search" placeholder="Cerca prodotto...">
+                                <select id="category-filter">
+                                    <option value="all">Tutte le categorie</option>
+                                    <option value="fresh">Freschi peso fisso</option>
+                                    <option value="mold">Muffettati</option>
+                                    <option value="creations">Le Creazioni</option>
+                                    <option value="toma">Tome</option>
+                                    <option value="erborinati">Erborinati</option>
+                                </select>
+                            </div>
+                            
+                            <table class="products-table">
+                                <thead>
+                                    <tr>
+                                        <th>Immagine</th>
+                                        <th>Nome</th>
+                                        <th>Categoria</th>
+                                        <th>Tipo Latte</th>
+                                        <th>Peso</th>
+                                        <th>Stock</th>
+                                        <th>Azioni</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="products-list">
+                                    <!-- I prodotti verranno inseriti qui da JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Messages Tab -->
+                <div id="messages-tab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Messaggi Ricevuti</h2>
+                        <div class="message-actions">
+                            <button class="action-btn" id="refresh-messages">
+                                <i class="fas fa-sync-alt"></i> Aggiorna
+                            </button>
+                            <button class="action-btn danger" id="delete-selected" disabled>
+                                <i class="fas fa-trash"></i> Elimina selezionati
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="messages-container">
+                        <div class="messages-sidebar">
+                            <div class="message-search">
+                                <input type="text" id="message-search" placeholder="Cerca messaggio...">
+                            </div>
+                            <div class="message-list" id="message-list">
+                                <!-- I messaggi verranno inseriti qui da JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="message-content" id="message-content">
+                            <div class="empty-state">
+                                <i class="fas fa-envelope-open"></i>
+                                <p>Seleziona un messaggio per visualizzarne il contenuto</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Tab -->
+                <div id="settings-tab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Impostazioni</h2>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-user-shield"></i> Account</h3>
+                            <form id="account-settings-form">
+                                <div class="form-group">
+                                    <label for="current-password">Password Attuale</label>
+                                    <input type="password" id="current-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">Nuova Password</label>
+                                    <input type="password" id="new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">Conferma Password</label>
+                                    <input type="password" id="confirm-password">
+                                </div>
+                                <button type="submit" class="save-btn">
+                                    <i class="fas fa-save"></i> Salva Modifiche
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3><i class="fas fa-database"></i> Backup & Ripristino</h3>
+                            <div class="settings-actions">
+                                <button class="action-btn" id="export-data">
+                                    <i class="fas fa-file-export"></i> Esporta Dati
+                                </button>
+                                <button class="action-btn" id="import-data">
+                                    <i class="fas fa-file-import"></i> Importa Dati
+                                </button>
+                                <button class="action-btn danger" id="reset-data">
+                                    <i class="fas fa-exclamation-triangle"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="toast" class="toast hidden">
+        <i class="fas fa-check-circle success-icon"></i>
+        <i class="fas fa-exclamation-circle error-icon"></i>
+        <span id="toast-message"></span>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="currentYear"></span> Remin. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+    
+    <script src="admin.js"></script>
+</body>
+</html>

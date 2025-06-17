@@ -17,9 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setupContactForm();
     setupChatbot();
     
-    // --- CAROUSEL ---
-    setupFeaturedCarousel();
-    
     // --- MISC ---
     setupFooterYear();
     
@@ -84,8 +81,18 @@ function setupProductFilters() {
     const resetFilters = document.getElementById('resetFilters');
     const clearSearch = document.querySelector('.clear-search');
     const activeFiltersContainer = document.querySelector('.active-filters');
+    const productsGrid = document.querySelector('.products-grid');
     
-    if (!filterButtons.length || !productCards.length) return;
+    // Log degli elementi trovati per debug
+    console.log('Filter buttons:', filterButtons.length);
+    console.log('Product cards:', productCards.length);
+    console.log('Product search:', productSearch);
+    console.log('Reset filters:', resetFilters);
+    console.log('Clear search:', clearSearch);
+    console.log('Active filters container:', activeFiltersContainer);
+    console.log('Products grid:', productsGrid);
+    
+    if (!productsGrid) return;
     
     let activeFilters = {
         type: 'all',
@@ -93,15 +100,24 @@ function setupProductFilters() {
     };
     
     // Setup clickable tags in product cards
-    setupClickableTags();
-
-    function updateProductVisibility() {
+    if (productCards.length > 0) {
+        setupClickableTags();
+    }    function updateProductVisibility() {
         const searchTerm = productSearch?.value.toLowerCase() || '';
         let visibleCount = 0;
         
-        productCards.forEach(card => {
-            const title = card.querySelector('.product-title').textContent.toLowerCase();
-            const matchesSearch = title.includes(searchTerm);
+        // Ottieni i prodotti aggiornati
+        const updatedProductCards = document.querySelectorAll('.product-card');
+        
+        updatedProductCards.forEach(card => {
+            const titleElement = card.querySelector('.product-title');
+            if (!titleElement) {
+                console.warn('Product card found without title element', card);
+                return;
+            }
+            
+            const title = titleElement.textContent.toLowerCase();
+            const matchesSearch = !searchTerm || title.includes(searchTerm);
             const matchesType = activeFilters.type === 'all' || card.getAttribute('data-type') === activeFilters.type;
             const matchesMilk = activeFilters.milk === 'all' || card.getAttribute('data-milk') === activeFilters.milk;
             const isVisible = (matchesSearch && matchesType && matchesMilk);
@@ -115,7 +131,7 @@ function setupProductFilters() {
         
         // Show message when no products match
         const noResultsMsg = document.getElementById('no-results-message');
-        if (visibleCount === 0) {
+        if (visibleCount === 0 && updatedProductCards.length > 0) {
             if (!noResultsMsg) {
                 const msg = document.createElement('div');
                 msg.id = 'no-results-message';
@@ -124,11 +140,14 @@ function setupProductFilters() {
                     <p>Nessun prodotto corrisponde ai criteri di ricerca.</p>
                     <button class="reset-filters visible">Cancella filtri</button>
                 `;
-                document.querySelector('.products-grid').appendChild(msg);
-                
-                msg.querySelector('button').addEventListener('click', () => {
-                    resetAllFilters();
-                });
+                const productsGridElement = document.querySelector('.products-grid');
+                if (productsGridElement) {
+                    productsGridElement.appendChild(msg);
+                    
+                    msg.querySelector('button').addEventListener('click', () => {
+                        resetAllFilters();
+                    });
+                }
             }
         } else if (noResultsMsg) {
             noResultsMsg.remove();
@@ -163,9 +182,11 @@ function setupProductFilters() {
             addActiveFilterTag('search', `"${productSearch.value.trim()}"`);
         }
     }
-    
-    function addActiveFilterTag(filterType, label) {
-        if (!activeFiltersContainer) return;
+      function addActiveFilterTag(filterType, label) {
+        if (!activeFiltersContainer) {
+            console.warn('Active filters container not found');
+            return;
+        }
         
         const tag = document.createElement('div');
         tag.className = 'active-filter';
@@ -176,21 +197,28 @@ function setupProductFilters() {
         
         activeFiltersContainer.appendChild(tag);
         
-        tag.querySelector('.remove-filter').addEventListener('click', () => {
-            if (filterType === 'search' && productSearch) {
-                productSearch.value = '';
-            } else {
-                activeFilters[filterType] = 'all';
+        const removeBtn = tag.querySelector('.remove-filter');
+        if (removeBtn) {
+            removeBtn.addEventListener('click', () => {
+                if (filterType === 'search' && productSearch) {
+                    productSearch.value = '';
+                } else {
+                    activeFilters[filterType] = 'all';
+                    
+                    // Update UI to show the "all" button as active
+                    document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`).forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    const allButton = document.querySelector(`.filter-btn[data-filter="${filterType}"][data-value="all"]`);
+                    if (allButton) {
+                        allButton.classList.add('active');
+                    }
+                }
                 
-                // Update UI to show the "all" button as active
-                document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`).forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                document.querySelector(`.filter-btn[data-filter="${filterType}"][data-value="all"]`)?.classList.add('active');
-            }
-            
-            updateProductVisibility();
-        });
+                updateProductVisibility();
+            });
+        }
     }
     
     function getFilterLabel(filterType, value) {
@@ -198,20 +226,33 @@ function setupProductFilters() {
         const button = document.querySelector(`.filter-btn[data-filter="${filterType}"][data-value="${value}"]`);
         return button ? button.textContent : value;
     }
-    
-    function setupClickableTags() {
+      function setupClickableTags() {
+        // Verifica se ci sono spec-item prima di procedere
+        const specItems = document.querySelectorAll('.product-specs .spec-item');
+        if (specItems.length === 0) {
+            console.warn('No spec items found for clickable tags');
+            return;
+        }
+        
+        console.log('Setting up clickable tags for', specItems.length, 'spec items');
+        
         // Add clickable class to all spec items
-        document.querySelectorAll('.product-specs .spec-item').forEach(tag => {
+        specItems.forEach(tag => {
             const text = tag.textContent.toLowerCase();
             
             // Determine if this tag represents a filter we can apply
             let filterType = null;
             let filterValue = null;
-            
-            // Check for milk type tags
+              // Check for milk type tags
             if (text.includes('latte di capra') || text.includes('latte caprino')) {
                 filterType = 'milk';
-                filterValue = 'goat';
+                // Se si tratta di un formaggio fresco, assegnare a goat, altrimenti assegnare a mix
+                const parentCard = tag.closest('.product-card');
+                if (parentCard && parentCard.getAttribute('data-type') === 'fresh') {
+                    filterValue = 'goat'; // con latte di capra
+                } else {
+                    filterValue = 'mix';  // capra
+                }
             } else if (text.includes('latte vaccino') || text.includes('mucca') || text.includes('vacca')) {
                 filterType = 'milk';
                 filterValue = 'cow';
@@ -998,6 +1039,8 @@ function deleteProduct(productId) {
     // Update products list
     loadProducts();
 }
+
+
 
 // --- MISC FUNCTIONS ---
 

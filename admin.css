@@ -1,29 +1,75 @@
-/* Admin Styles */
+/* Admin Styles v2.0 */
 
 /* Generale */
 :root {
-    --primary: #f39c12;
-    --primary-dark: #e67e22;
-    --secondary: #2c3e50;
-    --secondary-dark: #34495e;
-    --success: #2ecc71;
-    --danger: #e74c3c;
-    --light: #f5f7fa;
-    --dark: #2c3e50;
-    --border: #e0e0e0;
-    --text: #333;
-    --text-light: #777;
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
-    --shadow: 0 5px 15px rgba(0,0,0,0.1);
-    --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
-    --transition: all 0.3s ease;
+    --bs-primary: #0d6efd;
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-primary-dark: #0a58ca;
+    --bs-secondary: #6c757d;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success: #198754;
+    --bs-success-rgb: 25, 135, 84;
+    --bs-info: #0dcaf0;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-warning: #ffc107;
+    --bs-warning-rgb: 255, 193, 7;
+    --bs-danger: #dc3545;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-light: #f8f9fa;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark: #212529;
+    --bs-dark-rgb: 33, 37, 41;
+    --bs-white: #ffffff;
+    --bs-border: #dee2e6;
+    --bs-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --bs-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --bs-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    --bs-transition: all 0.3s ease;
 }
 
 .admin-main {
-    padding-top: 80px;
-    min-height: calc(100vh - 80px);
-    background: #f8f9fa;
+    min-height: 100vh;
+    background-color: var(--bs-light);
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Custom Admin Classes */
+.icon-box {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-sidebar {
+    background-color: var(--bs-white);
+    border-radius: 0.5rem;
+    box-shadow: var(--bs-shadow-sm);
+}
+
+.admin-sidebar .list-group-item {
+    border-left: 3px solid transparent;
+    padding: 1rem 1.25rem;
+}
+
+.admin-sidebar .list-group-item.active {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: var(--bs-primary);
+    border-left-color: var(--bs-primary);
+    font-weight: 500;
+}
+
+.admin-sidebar .list-group-item i {
+    opacity: 0.6;
+}
+
+.admin-sidebar .list-group-item.active i {
+    opacity: 1;
 }
 
 /* Login Overlay */
@@ -33,7 +79,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(52, 73, 94, 0.95));
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.85), rgba(81, 40, 136, 0.95));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,23 +89,36 @@
 }
 
 .login-container {
-    max-width: 450px;
+    max-width: 480px;
     width: 90%;
     background: white;
     padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow-lg);
+    border-radius: 1rem;
+    box-shadow: var(--bs-shadow-lg);
     animation: slideUp 0.5s ease forwards;
     text-align: center;
     position: relative;
 }
 
-.login-container h2 {
-    color: var(--secondary);
+.login-header {
     margin-bottom: 2rem;
+}
+
+.login-logo {
+    max-width: 120px;
+    margin-bottom: 1.5rem;
+}
+
+.login-container h2 {
+    color: var(--bs-dark);
+    margin-bottom: 0.5rem;
     font-size: 1.8rem;
-    position: relative;
-    padding-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.login-subtitle {
+    color: var(--bs-secondary);
+    margin-bottom: 1.5rem;
 }
 
 .login-container h2::after {

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Remin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="admin.css">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
     <header>
@@ -27,13 +29,15 @@
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
         </nav>
-    </header>
-
-    <main class="admin-main">
+    </header>    <main class="admin-main">
         <!-- Login overlay -->
         <div id="login-overlay">
             <div class="login-container">
-                <h2>Accesso Area Admin</h2>
+                <div class="login-header">
+                    <img src="LogoRemin.PNG" alt="Remin Logo" class="login-logo">
+                    <h2>Accesso Area Admin</h2>
+                    <p class="login-subtitle">Pannello di gestione aziendale</p>
+                </div>
                 
                 <div id="login-error" class="error-message">
                     <i class="fas fa-exclamation-circle"></i>
@@ -41,23 +45,26 @@
                 </div>
                 
                 <form id="admin-login-form">
-                    <div class="form-group">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="username" name="username" required autocomplete="username" placeholder="Username">
                         <label for="username">
                             <i class="fas fa-user"></i> Username
                         </label>
-                        <input type="text" id="username" name="username" required autocomplete="username" placeholder="Inserisci username">
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password" placeholder="Password">
                         <label for="password">
                             <i class="fas fa-lock"></i> Password
                         </label>
-                        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Inserisci password">
+                        <button type="button" id="toggle-password" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
                     </div>
                     
-                    <div class="remember-me">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Ricordami</label>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                        <label class="form-check-label" for="remember">Ricordami</label>
                     </div>
                     
                     <div class="form-actions">
@@ -69,105 +76,245 @@
                         </a>
                     </div>
                     
-                    <div class="login-help">
-                        <p>Credenziali demo: <strong>admin</strong> / <strong>formaggio2023</strong></p>
+                    <div class="login-help mt-4">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Credenziali demo: <strong>admin</strong> / <strong>formaggio2023</strong>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
-        
-        <!-- Admin Dashboard -->
+          <!-- Admin Dashboard -->
         <div id="admin-dashboard" class="hidden">
-            <div class="dashboard-header">
-                <h1><i class="fas fa-cheese"></i> Admin Dashboard</h1>
-                <div class="user-controls">
-                    <span class="user-greeting">Benvenuto, <strong>Admin</strong></span>
-                    <button id="logout-btn" class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i> Esci
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <i class="fas fa-cheese me-2"></i>
+                        <span class="fw-bold">Remin Admin</span>
+                    </a>
+                    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarAdmin">
+                        <ul class="navbar-nav ms-auto align-items-center">
+                            <li class="nav-item me-3">
+                                <a href="index.html" class="nav-link" target="_blank">
+                                    <i class="fas fa-external-link-alt me-1"></i>
+                                    Vedi sito
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle me-1"></i>
+                                    <span class="user-greeting">Admin</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit-profile-btn">
+                                            <i class="fas fa-user-edit me-2"></i>
+                                            Profilo
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="logout-btn">
+                                            <i class="fas fa-sign-out-alt me-2"></i>
+                                            Esci
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            </nav>
             
-            <!-- Admin Navigation Tabs -->
-            <div class="admin-nav">
-                <button class="tab-btn active" data-tab="products-tab">
-                    <i class="fas fa-cheese"></i> Prodotti
-                </button>
-                <button class="tab-btn" data-tab="messages-tab">
-                    <i class="fas fa-envelope"></i> Messaggi
-                    <span class="badge" id="unread-count">0</span>
-                </button>
-                <button class="tab-btn" data-tab="settings-tab">
-                    <i class="fas fa-cog"></i> Impostazioni
-                </button>
-            </div>
-            
-            <!-- Tab Contents -->
+            <div class="container-fluid py-4">
+                <div class="row">
+                    <div class="col-md-3 col-lg-2">
+                        <div class="admin-sidebar mb-4">
+                            <div class="list-group">
+                                <button class="list-group-item list-group-item-action active d-flex align-items-center" data-tab="products-tab">
+                                    <i class="fas fa-cheese me-3"></i>
+                                    <span>Prodotti</span>
+                                </button>
+                                <button class="list-group-item list-group-item-action d-flex align-items-center" data-tab="messages-tab">
+                                    <i class="fas fa-envelope me-3"></i>
+                                    <span>Messaggi</span>
+                                    <span class="badge bg-danger ms-auto" id="unread-count">0</span>
+                                </button>
+                                <button class="list-group-item list-group-item-action d-flex align-items-center" data-tab="settings-tab">
+                                    <i class="fas fa-cog me-3"></i>
+                                    <span>Impostazioni</span>
+                                </button>
+                                <button class="list-group-item list-group-item-action d-flex align-items-center" data-tab="analytics-tab">
+                                    <i class="fas fa-chart-line me-3"></i>
+                                    <span>Analytics</span>
+                                </button>
+                            </div>
+                            
+                            <div class="admin-version mt-3 text-center">
+                                <small class="text-muted">Remin Admin v2.0</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-9 col-lg-10">
+                        <div class="dashboard-welcome mb-4">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <span>Benvenuto nell'area amministrativa di Remin. Ultimo accesso: <span id="last-login-date">17/06/2025 10:30</span></span>
+                            </div>
+                        </div>
+              <!-- Tab Contents -->
             <div class="tab-contents">
                 <!-- Products Tab -->
                 <div id="products-tab" class="tab-content active">
-                    <div class="tab-header">
-                        <h2>Gestione Prodotti</h2>
-                        <button class="action-btn" id="add-product-btn">
-                            <i class="fas fa-plus"></i> Nuovo Prodotto
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="fw-bold">
+                            <i class="fas fa-cheese text-primary me-2"></i>
+                            Gestione Prodotti
+                        </h2>
+                        <button class="btn btn-primary" id="add-product-btn">
+                            <i class="fas fa-plus me-1"></i> Nuovo Prodotto
                         </button>
                     </div>
                     
-                    <div class="products-grid">
-                        <div class="product-form-container hidden" id="product-form-container">
-                            <h3 id="form-title">Aggiungi Prodotto</h3>
-                            <form id="product-form">
-                                <input type="hidden" id="product-id">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="product-name">Nome Prodotto</label>
-                                        <input type="text" id="product-name" required>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="icon-box me-3">
+                                        <i class="fas fa-boxes fa-2x"></i>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="product-category">Categoria</label>
-                                        <select id="product-category" required>
-                                            <option value="fresh">Freschi peso fisso</option>
-                                            <option value="mold">Muffettati</option>
-                                            <option value="creations">Le Creazioni</option>
-                                            <option value="toma">Tome</option>
-                                            <option value="erborinati">Erborinati</option>
-                                        </select>
+                                    <div>
+                                        <h5 class="card-title mb-0">Prodotti</h5>
+                                        <h3 class="mb-0" id="total-products">24</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="icon-box me-3">
+                                        <i class="fas fa-tag fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-0">Categorie</h5>
+                                        <h3 class="mb-0" id="total-categories">5</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-dark">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="icon-box me-3">
+                                        <i class="fas fa-eye fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-0">Visualizzazioni</h5>
+                                        <h3 class="mb-0" id="total-views">1,254</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body d-flex align-items-center">
+                                    <div class="icon-box me-3">
+                                        <i class="fas fa-star fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-0">Più popolari</h5>
+                                        <h3 class="mb-0" id="popular-products">6</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="products-grid">
+                        <div class="card mb-4 hidden" id="product-form-container">
+                            <div class="card-header bg-primary text-white">
+                                <h3 class="card-title mb-0" id="form-title">Aggiungi Prodotto</h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="product-form" class="needs-validation" novalidate>
+                                    <input type="hidden" id="product-id">
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="product-name" class="form-label">Nome Prodotto</label>
+                                                <input type="text" class="form-control" id="product-name" required>
+                                                <div class="invalid-feedback">
+                                                    Inserisci il nome del prodotto
+                                                </div>
+                                            </div>                                            <div class="form-group mb-3">
+                                                <label for="product-category" class="form-label">Categoria</label>
+                                                <select class="form-select" id="product-category" required>
+                                                    <option value="fresh">Freschi peso fisso</option>
+                                                    <option value="mold">Muffettati</option>
+                                                    <option value="creations">Le Creazioni</option>
+                                                    <option value="toma">Tome</option>
+                                                    <option value="erborinati">Erborinati</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Seleziona una categoria
+                                                </div>
+                                            </div>
+                                </div>
+                                  <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="product-milk" class="form-label">Tipo di Latte</label>
+                                            <select class="form-select" id="product-milk" required>
+                                                <option value="cow">Mucca</option>
+                                                <option value="goat">Capra</option>
+                                                <option value="mix">Misto</option>
+                                                <option value="sheep">Pecora</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="product-weight" class="form-label">Peso</label>
+                                            <input type="text" class="form-control" id="product-weight" placeholder="es. 100g">
+                                        </div>
                                     </div>
                                 </div>
                                 
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="product-milk">Tipo di Latte</label>
-                                        <select id="product-milk" required>
-                                            <option value="cow">Mucca</option>
-                                            <option value="goat">Capra</option>
-                                            <option value="mix">Misto</option>
-                                            <option value="sheep">Pecora</option>
-                                        </select>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="product-image" class="form-label">Immagine</label>
+                                            <input type="file" class="form-control" id="product-image" accept="image/*">
+                                            <div class="form-text">Selezionare un'immagine per il prodotto (.png, .jpg)</div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="product-weight">Peso</label>
-                                        <input type="text" id="product-weight" placeholder="es. 100g">
-                                    </div>
-                                </div>
-                                
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="product-image">Immagine</label>
-                                        <input type="file" id="product-image" accept="image/*">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="product-stock">Disponibilità</label>
-                                        <input type="number" id="product-stock" min="0" value="10">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="product-stock" class="form-label">Disponibilità</label>
+                                            <input type="number" class="form-control" id="product-stock" min="0" value="10">
+                                        </div>
                                     </div>
                                 </div>
+                                  <div class="form-group mb-3">
+                                    <label for="product-description" class="form-label">Descrizione</label>
+                                    <textarea class="form-control" id="product-description" rows="3" placeholder="Inserisci una descrizione del prodotto..."></textarea>
+                                </div>
                                 
-                                <div class="form-actions">
-                                    <button type="submit" class="save-btn">
-                                        <i class="fas fa-save"></i> Salva
+                                <div class="form-actions d-flex justify-content-between mt-4">
+                                    <button type="button" class="btn btn-outline-secondary" id="cancel-product">
+                                        <i class="fas fa-times me-1"></i> Annulla
                                     </button>
-                                    <button type="button" class="cancel-btn" id="cancel-product">
-                                        <i class="fas fa-times"></i> Annulla
+                                    
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-save me-1"></i> Salva Prodotto
                                     </button>
                                 </div>
                             </form>
@@ -297,8 +444,54 @@
         <div class="footer-content">
             <p>&copy; <span id="currentYear"></span> Remin. Tutti i diritti riservati.</p>
         </div>
-    </footer>
-    
+    </footer>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="admin.js"></script>
+    
+    <script>
+        // Inizializza i tooltips di Bootstrap
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Funzionalità per mostrare/nascondere password
+        document.getElementById('toggle-password')?.addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Validazione form Bootstrap
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 </body>
 </html>

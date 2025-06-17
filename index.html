@@ -19,8 +19,16 @@
 </head>
 <body>
     <a href="#home" class="skip-link">Salta al contenuto principale</a>
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
+    <div class="loading" id="loading">                        <h3 class="product-title">Blu Mirtillo</h3>
+                        <div class="product-specs">
+                            <span class="spec-item">Latte vaccino</span>
+                            <span class="spec-item">⚖️ 1600 g</span>
+                            <span class="spec-item">📦 conf.: 1 pz</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
+                        </div>
+                        <div class="certification-badges">
+                            <span title="Prodotto Artigianale">A</span>
+                            <span title="Creazioni Speciali">C</span><div class="spinner"></div>
     </div>
     <header>
         <nav aria-label="Navigazione principale">
@@ -31,12 +39,10 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
+            </div>            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">Le soluzioni</a></li>
                 <li><a href="#products">Prodotti</a></li>
-                <li><a href="#quality">Qualità</a></li>
                 <li><a href="#contact">Contatti</a></li>
                 <li><a href="contatti.html">Contatti Completi</a></li>
                 <li><a href="admin.html" class="admin-nav-link"><i class="fas fa-lock"></i> Admin</a></li>
@@ -93,85 +99,6 @@
         </div>
     </section>
 
-    <section class="featured-products">
-        <div class="container">
-            <h2 class="section-title">I Nostri Prodotti in Evidenza</h2>
-            <div class="carousel-container">
-                <div class="carousel">
-                    <div class="carousel-item product-card">
-                        <div class="product-image">
-                            <img src="Blu di capra.png" alt="Blu di capra">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Blu di capra</h3>
-                            <div class="product-specs">
-                                <span class="spec-item">Latte di capra</span>
-                                <span class="spec-item">Erborinato</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item product-card">
-                        <div class="product-image">
-                            <img src="Robiolone.png" alt="Robiolone">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Robiolone</h3>
-                            <div class="product-specs">
-                                <span class="spec-item">20% latte di capra</span>
-                                <span class="spec-item">Muffettato</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item product-card">
-                        <div class="product-image">
-                            <img src="Primula.png" alt="Primula">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Primula</h3>
-                            <div class="product-specs">
-                                <span class="spec-item">20% latte di capra</span>
-                                <span class="spec-item">Fresco</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item product-card">
-                        <div class="product-image">
-                            <img src="Bucaneve.png" alt="Bucaneve">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Bucaneve</h3>
-                            <div class="product-specs">
-                                <span class="spec-item">20% latte di capra</span>
-                                <span class="spec-item">Fresco</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-controls">
-                <button id="prev-btn" aria-label="Prodotto precedente">&lt;</button>
-                <button id="next-btn" aria-label="Prodotto successivo">&gt;</button>
-            </div>
-            <div class="carousel-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Cosa Dicono i Nostri Clienti</h2>
-            <div class="testimonial-card">
-                <p class="testimonial-text">I formaggi Remin sono diventati un elemento imprescindibile nel nostro ristorante. La qualità e il sapore autentico hanno conquistato i nostri clienti.</p>
-                <p class="testimonial-author">Marco Rossi</p>
-                <p class="testimonial-company">Chef, Ristorante La Pergola</p>
-            </div>
-        </div>
-    </section>
-
     <section id="products" class="products">
         <div class="container">
             <h2 class="section-title">I Nostri Prodotti</h2>
@@ -199,9 +126,7 @@
                             <button class="filter-btn" data-filter="type" data-value="toma">Tome</button>
                             <button class="filter-btn" data-filter="type" data-value="erborinati">Erborinati</button>
                         </div>
-                    </div>
-                    <div class="filter-group">
-                        <span class="filter-group-title">Tipo di Latte</span>
+                    </div>                    <div class="filter-group">                        <span class="filter-group-title">Tipo di Latte</span>
                         <div class="filter-buttons">
                             <button class="filter-btn active" data-filter="milk" data-value="all">Tutti</button>
                             <button class="filter-btn" data-filter="milk" data-value="cow">Mucca</button>
@@ -220,7 +145,7 @@
 
             <div class="products-grid">
                 <!-- Nuova aggiunta: blu di capra -->
-                <div class="product-card" data-type="erborinati" data-milk="goat">
+                <div class="product-card" data-type="erborinati" data-milk="mix">
                     <div class="product-image">
                         <a href="Blu di capra.png" class="img-link">
                             <img src="Blu di capra.png" alt="Blu di capra" style="width: 100%; height: 100%; object-fit: contain;">
@@ -230,7 +155,7 @@
                         <h3 class="product-title">Blu di capra</h3>
                         <div class="product-specs">
                             <span class="spec-item">Latte di capra</span>
-                            <span class="spec-item">⚖️ 2000 g</span>
+                            <span class="spec-item">⚖️ 5000 g</span>
                             <span class="spec-item">📦 conf.: 1 pz</span>
                             <span class="spec-item">🕒 Stagionatura: Erborinato</span>
                         </div>
@@ -320,7 +245,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-weight="4000" data-type="toma" data-milk="goat">
+                <div class="product-card" data-weight="4000" data-type="toma" data-milk="mix">
                     <div class="product-image">
                         <a href="Toma bianca.png" class="img-link">
                             <img src="Toma bianca.png" alt="Toma bianca dolce capra" style="width: 100%; height: 100%; object-fit: contain;">
@@ -340,22 +265,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-weight="65" data-type="fresh" data-milk="cow">
+                <div class="product-card" data-weight="65" data-type="mold" data-milk="mix">
                     <div class="product-image">
                         <a href="Biancaneve.png" class="img-link">
                             <img src="Biancaneve.png" alt="Biancaneve" style="width: 100%; height: 100%; object-fit: contain;">
                         </a>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Biancaneve</h3>                        <div class="product-specs">
-                            <span class="spec-item">Latte vaccino</span>
+                    </div>                    <div class="product-info">                        <h3 class="product-title">Biancaneve</h3>                        <div class="product-specs">
+                            <span class="spec-item">Con latte di capra</span>
                             <span class="spec-item">⚖️ 65 g</span>
-                            <span class="spec-item">📦 conf.: 4 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Fresco</span>
+                            <span class="spec-item">📦 conf.: 4 pz</span>                            <span class="spec-item">🕒 Stagionatura: Mufettato</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Fresco">F</span>
+                            <span title="Mufettato">M</span>
                         </div>
                     </div>
                 </div>
@@ -378,9 +300,8 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Fresco">F</span>
                         </div>
-                    </div>
-                </div>                <!-- Rimosso campanula come richiesto -->
-                <div class="product-card" data-type="creations" data-milk="goat">
+                    </div>                </div>                <!-- Rimosso campanula come richiesto -->
+                <div class="product-card" data-type="creations" data-milk="mix">
                     <div class="product-image">
                         <a href="#" class="img-link">                            <img src="Foglia.png" alt="robiolina in foglia" style="width: 100%; height: 100%; object-fit: contain;">
                         </a>
@@ -414,41 +335,37 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Le Creazioni">✨</span>
                         </div>
-                    </div>
-                </div>                <div class="product-card" data-type="creations" data-milk="cow">
+                    </div>                </div>                <div class="product-card" data-type="creations" data-milk="cow">
                     <div class="product-image">
                         <a href="#" class="img-link">
                             <img src="BLU.png" alt="Blu e nero" style="width: 100%; height: 100%; object-fit: contain;">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Blu e nero</h3>                        <div class="product-specs">
+                    <div class="product-info">                        <h3 class="product-title">Blu e nero</h3>                        <div class="product-specs">
                             <span class="spec-item">Latte di vacca di montagna</span>
                             <span class="spec-item">⚖️ 240 g</span>
                             <span class="spec-item">📦 conf.: 4 pz</span>
-                            <span class="spec-item">🕒 Le Creazioni</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Le Creazioni">✨</span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
-                    </div>
-                </div>                <div class="product-card" data-type="erborinati" data-milk="cow">
+                    </div>                </div>                <div class="product-card" data-type="creations" data-milk="cow">
                     <div class="product-image">
                         <a href="#" class="img-link">
                             <img src="rosso.png" alt="blu e rosso" style="width: 100%; height: 100%; object-fit: contain;">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">blu e rosso</h3>                        <div class="product-specs">
+                    <div class="product-info">                        <h3 class="product-title">blu e rosso</h3>                        <div class="product-specs">
                             <span class="spec-item">Latte di vacca di montagna</span>
                             <span class="spec-item">⚖️ 250 g</span>
                             <span class="spec-item">📦 conf.: 4 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Erborinato</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Erborinato">E</span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
                     </div>
                 </div><div class="product-card" data-type="creations" data-milk="cow">
@@ -570,26 +487,24 @@
                     </div>
                 </div>
                 <!-- 30g -->
-                <div class="product-card" data-weight="30" data-type="mold" data-weight-type="fixed" data-milk="cow">
+                <div class="product-card" data-weight="30" data-type="creations" data-weight-type="fixed" data-milk="cow">
                     <div class="product-image">
                         <a href="Aperitaly.png" class="img-link">
                             <img src="Aperitaly.png" alt="Aperitaly" style="width: 100%; height: 100%; object-fit: contain;">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Aperitaly</h3>                        <div class="product-specs">
+                    <div class="product-info">                        <h3 class="product-title">Aperitaly</h3>                        <div class="product-specs">
                             <span class="spec-item">Latte vaccino</span>
                             <span class="spec-item">⚖️ 30 g</span>
                             <span class="spec-item">📦 conf.: 6 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: 10 giorni</span>
-                        </div>
-                        <div class="product-details">
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
+                        </div>                        <div class="product-details">
                             <h4>Gusto</h4>
                             <p>Dolce e scioglievole, dal sapore delicato, un'armonia di gusto unica per profumi ed aromi. Ottimo da abbinare su un tagliere ad un calice di vino da degustazione.</p>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Filiera Controllata">✓</span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
                     </div>
                 </div>
@@ -612,27 +527,7 @@
                             <span title="Prodotto Artigianale">A</span>
                             <span title="Filiera Controllata">✓</span>
                         </div>
-                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
-                    </div>
-                </div>
-                <!-- 65g -->                <div class="product-card" data-weight="65" data-type="fresh" data-milk="goat" itemscope itemtype="http://schema.org/Product">
-                    <meta itemprop="name" content="Bucaneve">
-                    <meta itemprop="description" content="La purezza del latte in ogni morso">
-                    <div class="product-image">
-                        <div class="product-specs">
-                            <span class="spec-item" itemprop="additionalType">20% latte di capra</span>
-                            <span class="spec-item" itemprop="weight">⚖️ 65 g</span>
-                            <span class="spec-item">📦 conf.: 1 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Fresco</span>
-                        </div>
-                        <div class="product-details">
-                        </div>
-                        <div class="certification-badges">
-                            <span title="Prodotto Artigianale">A</span>
-                            <span title="Filiera Controllata">✓</span>
-                        </div>
-                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
-                    </div>
+                        <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>                    </div>
                 </div>
                 <div class="product-card" data-weight="65" data-type="fresh" data-milk="goat">
                     <div class="product-image">
@@ -745,53 +640,48 @@
                     </div>
                 </div>
                 <!-- 230g -->
-                <div class="product-card" data-weight="230" data-type="fresh" data-milk="goat">
+                <div class="product-card" data-weight="230" data-type="creations" data-milk="mix">
                     <div class="product-image">
                         <a href="Robiolina.png" class="img-link">
                             <img src="Robiolina.png" alt="Robiolina in Cera d'Api">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Robiolina in Cera d'Api</h3>                        <div class="product-specs">
+                    <div class="product-info">                        <h3 class="product-title">Robiolina in Cera d'Api</h3>                        <div class="product-specs">
                             <span class="spec-item">Latte caprino</span>
                             <span class="spec-item">⚖️ 230 g</span>
                             <span class="spec-item">📦 conf.: 6 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Fresco</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Filiera Controllata">✓</span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
                         <div style="text-align:center; margin-top: 0.5rem; font-size: 1.5rem;">🇮🇹</div>
                     </div>
                 </div>
                 <!-- 500g -->
-                <div class="product-card" data-weight="500" data-type="mold" data-weight-type="variable" data-milk="mix">
+                <div class="product-card" data-weight="500" data-type="creations" data-weight-type="variable" data-milk="mix">
                     <div class="product-image">
                         <a href="Cenerentola.png" class="img-link">
                             <img src="Cenerentola.png" alt="Cenerentola">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Cenerentola</h3>                        <div class="product-specs">
+                    <div class="product-info">                        <h3 class="product-title">Cenerentola</h3>                        <div class="product-specs">
                             <span class="spec-item">🥛 Latte di capra</span>
                             <span class="spec-item">⚖️ 500 g</span>
                             <span class="spec-item">📦 conf.: 4 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: 30 giorni</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="product-details">
                             <h4>Gusto</h4>
                             <p>Ricco di profumi, il suo sapore dolce caprino è esaltato dalla stagionatura sotto carbone vegetale che ne arricchisce il carattere.</p>
-                        </div>
-                        <div class="certification-badges">
+                        </div>                        <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Muffettato"></span>
-                            <span title="Filiera Controllata">✓ </span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
                     </div>
                 </div>
-                <!-- 1600g -->
-                <div class="product-card" data-weight="1600" data-type="erborinati" data-milk="cow">
+                <!-- 1600g -->                <div class="product-card" data-weight="1600" data-type="creations" data-milk="cow">
                     <div class="product-image">
                         <a href="blu mirtillo.png" class="img-link">
                             <img src="blu mirtillo.png" alt="Blu Mirtillo">
@@ -803,7 +693,7 @@
                             <span class="spec-item">Latte vaccino</span>
                             <span class="spec-item">⚖️ 1600 g</span>
                             <span class="spec-item">📦 conf.: 1 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Erborinato</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
@@ -812,7 +702,7 @@
                     </div>
                 </div>
                 <!-- 2000g -->
-                <div class="product-card" data-weight="2000" data-type="mold" data-milk="goat">
+                <div class="product-card" data-weight="2000" data-type="mold" data-milk="mix">
                     <div class="product-image">
                         <a href="Robiolone.png" class="img-link">
                             <img src="Robiolone.png" alt="Robiolone">
@@ -833,86 +723,77 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-weight="2000" data-type="fresh" data-milk="goat">
+                <div class="product-card" data-weight="2000" data-type="creations" data-milk="goat">
                     <div class="product-image">
                         <a href="Robiolone mirtillo e pistacchio.png" class="img-link">
                             <img src="Robiolone mirtillo e pistacchio.png" alt="Robiolone Mirtillo e Pistacchio">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Robiolone Mirtillo e Pistacchio</h3>
+                    <div class="product-info">                        <h3 class="product-title">Robiolone Mirtillo e Pistacchio</h3>
                         <div class="product-specs">
                             <span class="spec-item">20% latte di capra</span>
                             <span class="spec-item">⚖️ 2000 g</span>
                             <span class="spec-item">📦 conf.: 1 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Fresco</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Filiera Controllata">✓</span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
                     </div>
                 </div>
-                <!-- 2500g -->
-                <div class="product-card" data-weight="2500" data-type="erborinati" data-milk="cow">
+                <!-- 2500g -->                <div class="product-card" data-weight="2500" data-type="creations" data-milk="cow">
                     <div class="product-image">
                         <a href="ratafia.png" class="img-link">
                             <img src="ratafia.png" alt="Blu & Ratafia al Lampone con Fragola">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Blu & Ratafia al Lampone con Fragola</h3>
+                    <div class="product-info">                        <h3 class="product-title">Blu & Ratafia al Lampone con Fragola</h3>
                         <div class="product-specs">
                             <span class="spec-item">Latte vaccino</span>
                             <span class="spec-item">⚖️ 2500 g</span>
                             <span class="spec-item">📦 conf.: 1 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Erborinato</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Filiera Controllata">✓</span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="product-card" data-weight="2500" data-type="erborinati" data-milk="cow">
+                </div>                <div class="product-card" data-weight="2500" data-type="creations" data-milk="cow">
                     <div class="product-image">
                         <a href="Grappa.png" class="img-link">
                             <img src="Grappa.png" alt="Blu & Grappa">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Blu & Grappa</h3>
+                    <div class="product-info">                        <h3 class="product-title">Blu & Grappa</h3>
                         <div class="product-specs">
                                                        <span class="spec-item">Latte vaccino</span>
                             <span class="spec-item">⚖️ 2500 g</span>
                             <span class="spec-item">📦 conf.: 1 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Erborinato</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Filiera Controllata">✓</span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="product-card" data-weight="2500" data-type="erborinati" data-weight-type="variable" data-milk="sheep">
+                </div>                <div class="product-card" data-weight="2500" data-type="creations" data-weight-type="variable" data-milk="sheep">
                     <div class="product-image">
                         <a href="Verde.png" class="img-link">
                             <img src="Verde.png" alt="Verde di pecora">
                         </a>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Verde di pecora</h3>
+                    <div class="product-info">                        <h3 class="product-title">Verde di pecora</h3>
                         <div class="product-specs">
                             <span class="spec-item">Latte di pecora</span>
                             <span class="spec-item">⚖️ 2500 g</span>
                             <span class="spec-item">📦 conf.: 1 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Muffettato</span>
+                            <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
-                            <span title="Filiera Controllata">✓</span>
+                            <span title="Creazioni Speciali">C</span>
                         </div>
                     </div>
                 </div>

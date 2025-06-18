@@ -1,7 +1,7 @@
 /**
  * Remin Admin Panel 2.0
  * Sistema di gestione migliorato per l'amministrazione del sito Remin
- * Ultimo aggiornamento: 17/06/2025
+ * Ultimo aggiornamento: 18/06/2025
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -26,6 +26,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalCategories = document.getElementById('total-categories');
     const totalViews = document.getElementById('total-views');
     const popularProducts = document.getElementById('popular-products');
+    const adminSidebar = document.getElementById('adminSidebar');
+    const sidebarToggleBtn = document.getElementById('sidebarToggle');
+    
+    // Assicuriamoci che ci siano sempre dati di esempio se localStorage è vuoto
+    const products = JSON.parse(localStorage.getItem('products') || '[]');
+    const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+    
+    if (products.length === 0 || messages.length === 0) {
+        generateSampleData();
+    }
     
     // Inizializza la sessione
     initSession();
@@ -279,12 +289,17 @@ document.addEventListener('DOMContentLoaded', function() {
         updateDashboardStats();
         
         return product;
-    }
-      function loadProducts() {
+    }      function loadProducts() {
         if (!productsList) return;
         
         // Ottieni i prodotti dal localStorage
-        const products = JSON.parse(localStorage.getItem('products') || '[]');
+        let products = JSON.parse(localStorage.getItem('products') || '[]');
+        
+        // Se non ci sono prodotti nella localStorage, aggiungiamo alcuni prodotti di esempio
+        if (products.length === 0) {
+            generateSampleData();
+            products = JSON.parse(localStorage.getItem('products') || '[]');
+        }
         
         // Pulisci lista esistente
         productsList.innerHTML = '';
@@ -470,12 +485,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mostra notifica
             showToast('Prodotto eliminato con successo!', 'success');
         }
-    }
-      function loadMessages() {
+    }      function loadMessages() {
         if (!messageList || !unreadCount) return;
         
         // Ottieni messaggi dal localStorage
-        const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+        let messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+        
+        // Se non ci sono messaggi nella localStorage, aggiungiamo alcuni messaggi di esempio
+        if (messages.length === 0) {
+            generateSampleData();
+            messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+        }
         
         // Conta messaggi non letti
         const unreadMessages = messages.filter(m => !m.letto);
@@ -810,6 +830,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Genera dati di esempio all'avvio
     generateSampleData();
+    
+    // Sidebar toggle per mobile
+    if (sidebarToggleBtn && adminSidebar) {
+        sidebarToggleBtn.addEventListener('click', function() {
+            adminSidebar.classList.toggle('show');
+        });
+        
+        // Chiudi il sidebar quando si fa clic al di fuori
+        document.addEventListener('click', function(event) {
+            const isClickInsideSidebar = adminSidebar.contains(event.target);
+            const isClickOnToggle = sidebarToggleBtn.contains(event.target);
+            
+            if (!isClickInsideSidebar && !isClickOnToggle && adminSidebar.classList.contains('show') && window.innerWidth < 992) {
+                adminSidebar.classList.remove('show');
+            }
+        });
+    }
 });
 
 function filterProducts() {

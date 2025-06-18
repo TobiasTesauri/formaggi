@@ -4,8 +4,20 @@
   
     /\___/\
    (  o o  )
-   (  =^=  ) 
-    (--_--)  
+   (  =^=          <div class="container">
+            <h2 class="section-title">Le Soluzioni</h2>
+            <div class="about-content" style="display: flex; justify-content: center;">
+                <div class="about-text text-center" style="max-width: 800px;">
+                    <ul style="font-size:1.15rem; line-height:2; list-style:disc; margin-left:auto; margin-right:auto; display: inline-block; text-align: left;">
+                        <li>Confezioni ''Su Misura''</li>
+                        <li>Peso/Prezzo Fisso da Banco Freschi</li>
+                        <li>Shelf Life</li>
+                        <li>Riduzione Plastica</li>
+                        <li>Qualità e Sicurezza Alimentare Certificata</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
      |_____|
 -->
 
@@ -14,6 +26,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Remin - Formaggi e Latticini di Tradizione dal 1965. Scopri i nostri prodotti artigianali, la qualità certificata e le soluzioni su misura.">
+    <meta name="keywords" content="formaggi, latticini, prodotti caseari, formaggio artigianale, Remin, formaggio capra, formaggio pecora">
+    <meta name="author" content="Remin">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Remin | Formaggi e Latticini di Tradizione dal 1965">
+    <meta property="og:description" content="Scopri i formaggi artigianali di Remin, prodotti con passione dal 1965 seguendo le antiche tradizioni.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.remin.it/">
+    <meta property="og:image" content="LogoRemin.png">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
     <title>Remin | Formaggi e Latticini di Tradizione dal 1965</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -26,9 +52,8 @@
                             <span class="spec-item">📦 conf.: 1 pz</span>
                             <span class="spec-item">🕒 Categoria: Creazioni Speciali</span>
                         </div>
-                        <div class="certification-badges">
-                            <span title="Prodotto Artigianale">A</span>
-                            <span title="Creazioni Speciali">C</span><div class="spinner"></div>
+                        <div class="certification-badges">                            <span title="Prodotto Artigianale">A</span>
+                            <div class="spinner"></div>
     </div>
     <header>
         <nav aria-label="Navigazione principale">
@@ -89,10 +114,9 @@
                         <li>Riduzione Plastica</li>
                         <li>Qualità e Sicurezza Alimentare Certificata</li>
                     </ul>
-                </div>
-                <div class="about-image">
+                </div>                <div class="about-image">
                     <div class="cheese-visual">
-                        <img src="Stagionatura.png" alt="Stagionatura">
+                        <img src="formaggio.jpg" alt="Formaggio Remin">
                     </div>
                 </div>
             </div>
@@ -157,7 +181,7 @@
                             <span class="spec-item">Latte di capra</span>
                             <span class="spec-item">⚖️ 5000 g</span>
                             <span class="spec-item">📦 conf.: 1 pz</span>
-                            <span class="spec-item">🕒 Stagionatura: Erborinato</span>
+                            
                         </div>
                         <div class="certification-badges">
                             <span title="Prodotto Artigianale">A</span>
@@ -337,7 +361,7 @@
                         </div>
                     </div>                </div>                <div class="product-card" data-type="creations" data-milk="cow">
                     <div class="product-image">
-                        <a href="#" class="img-link">
+                        <a href="BLU.png" class="img-link">
                             <img src="BLU.png" alt="Blu e nero" style="width: 100%; height: 100%; object-fit: contain;">
                         </a>
                     </div>
@@ -799,9 +823,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Add this section before the chat-input div -->
+    </section>    <!-- Contact section with wooden background -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Contatti</h2>
@@ -854,23 +876,21 @@
     <!-- Add this before the script tag -->
     <div class="lightbox" id="imageLightbox">
         <span class="lightbox-close">&times;</span>
-        <img class="lightbox-image" src="" alt="">
+        <img class="lightbox-image" src="" alt="Immagine ingrandita del prodotto">
     </div>
 
     <!-- Add Footer -->
     <footer>
         <div class="footer-content">
-            <p>&copy; <span id="currentYear"></span> Remin. Tutti i diritti riservati.</p>
-            <div class="footer-links">
+            <p>&copy; <span id="currentYear"></span> Remin. Tutti i diritti riservati.</p>            <div class="footer-links">
                 <a href="contatti.html">Contatti</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Termini e Condizioni</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="termini-condizioni.html">Termini e Condizioni</a>
                 <a href="admin.html" class="admin-link"><i class="fas fa-lock"></i> Area Admin</a>
             </div>
         </div>
-    </footer>
-
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    </footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts.js"></script>
+    <script src="remove-stagionatura.js"></script>
 </body>
 </html>

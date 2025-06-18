@@ -33,6 +33,31 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    padding-top: 80px; /* Add padding to prevent content from being hidden behind header */
+}
+
+/* Fix sidebar visibility issues */
+#adminSidebar {
+    position: fixed;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    z-index: 900;
+    padding: 20px 0;
+    width: 280px;
+    left: 0;
+    top: 80px;
+}
+
+.admin-content {
+    margin-left: 280px;
+    padding: 20px;
+    width: calc(100% - 280px);
+}
+
+.admin-container {
+    padding: 20px;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* Custom Admin Classes */
@@ -782,6 +807,112 @@
     color: var(--danger);
 }
 
+/* Dashboard Styles */
+.dashboard-card {
+    background-color: var(--bs-white);
+    border-radius: 0.75rem;
+    box-shadow: var(--bs-shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--bs-border);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--bs-shadow);
+}
+
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--bs-primary);
+}
+
+.stat-card.products {
+    border-left-color: var(--bs-success);
+}
+
+.stat-card.messages {
+    border-left-color: var(--bs-warning);
+}
+
+.stat-card.interactions {
+    border-left-color: var(--bs-info);
+}
+
+.stat-card h3 {
+    font-size: 1.1rem;
+    color: var(--bs-secondary);
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--bs-dark);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-icon {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    height: 48px;
+    width: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bs-primary);
+}
+
+.stat-card.products .stat-icon {
+    background-color: rgba(var(--bs-success-rgb), 0.1);
+    color: var(--bs-success);
+}
+
+.stat-card.messages .stat-icon {
+    background-color: rgba(var(--bs-warning-rgb), 0.1);
+    color: var(--bs-warning);
+}
+
+.stat-card.interactions .stat-icon {
+    background-color: rgba(var(--bs-info-rgb), 0.1);
+    color: var(--bs-info);
+}
+
+.stat-trend {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.trend-up {
+    color: var(--bs-success);
+}
+
+.trend-down {
+    color: var(--bs-danger);
+}
+
 /* Utilities */
 .hidden {
     display: none;
@@ -843,5 +974,26 @@
     
     .messages-sidebar {
         height: 300px;
+    }
+}
+
+@media (max-width: 992px) {
+    #adminSidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        width: 260px;
+    }
+    
+    #adminSidebar.show {
+        transform: translateX(0);
+    }
+    
+    .admin-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .sidebar-toggle {
+        display: block;
     }
 }

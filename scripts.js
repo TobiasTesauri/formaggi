@@ -102,7 +102,10 @@ function setupProductFilters() {
     // Setup clickable tags in product cards
     if (productCards.length > 0) {
         setupClickableTags();
-    }    function updateProductVisibility() {
+    }
+    
+    // Ordina i prodotti per peso (dal più basso al più alto)
+    sortProductsByWeight();function updateProductVisibility() {
         const searchTerm = productSearch?.value.toLowerCase() || '';
         let visibleCount = 0;
         
@@ -128,8 +131,7 @@ function setupProductFilters() {
         
         // Update filter visibility
         updateActiveFiltersDisplay();
-        
-        // Show message when no products match
+          // Show message when no products match
         const noResultsMsg = document.getElementById('no-results-message');
         if (visibleCount === 0 && updatedProductCards.length > 0) {
             if (!noResultsMsg) {
@@ -151,6 +153,11 @@ function setupProductFilters() {
             }
         } else if (noResultsMsg) {
             noResultsMsg.remove();
+        }
+        
+        // Mantieni l'ordinamento per peso anche dopo l'applicazione dei filtri
+        if (visibleCount > 0) {
+            sortProductsByWeight();
         }
     }
 
@@ -304,8 +311,7 @@ function setupProductFilters() {
         
         updateProductVisibility();
     }
-    
-    function resetAllFilters() {
+      function resetAllFilters() {
         activeFilters = {
             type: 'all',
             milk: 'all'
@@ -322,6 +328,9 @@ function setupProductFilters() {
         });
         
         updateProductVisibility();
+        
+        // Assicurati che i prodotti siano ancora ordinati per peso
+        sortProductsByWeight();
     }
 
     filterButtons.forEach(button => {
@@ -362,6 +371,9 @@ function setupProductFilters() {
         resetFilters.addEventListener('click', resetAllFilters);
     }
     
+    // Ordina i prodotti per peso (dal più basso al più alto)
+    sortProductsByWeight();
+    
     // Initial visibility setup
     updateProductVisibility();
     
@@ -378,6 +390,55 @@ function setupProductFilters() {
         childList: true,
         subtree: true
     });
+}
+
+// Funzione per ordinare i prodotti per peso (grammi)
+function sortProductsByWeight() {
+    const productsGrid = document.querySelector('.products-grid');
+    if (!productsGrid) return;
+    
+    const productCards = Array.from(productsGrid.querySelectorAll('.product-card'));
+    
+    // Estrai il peso da ogni scheda prodotto
+    productCards.forEach(card => {
+        // Se il peso non è già stato impostato nell'attributo data-weight o dobbiamo aggiornarlo
+        // Cerca tutti gli elementi spec-item per trovare quello del peso
+        const specItems = card.querySelectorAll('.spec-item');
+        let weightFound = false;
+        
+        specItems.forEach(item => {
+            // Cerca il tag del peso (formato: ⚖️ XXX g)
+            if (item.textContent.includes('⚖️')) {
+                const weightText = item.textContent;
+                const weightMatch = weightText.match(/(\d+)\s*g/);
+                
+                if (weightMatch && weightMatch[1]) {
+                    const weightGrams = parseInt(weightMatch[1], 10);
+                    card.dataset.weight = weightGrams;
+                    weightFound = true;
+                }
+            }
+        });
+        
+        if (!weightFound) {
+            card.dataset.weight = 9999; // Default alto per prodotti senza peso specificato
+        }
+    });
+    
+    // Ordina le schede per peso (dal più basso al più alto)
+    const sortedCards = productCards.sort((a, b) => {
+        const weightA = parseInt(a.dataset.weight, 10) || 9999;
+        const weightB = parseInt(b.dataset.weight, 10) || 9999;
+        return weightA - weightB;
+    });
+    
+    // Svuota e ricrea il grid con le schede ordinate
+    productsGrid.innerHTML = '';
+    sortedCards.forEach(card => {
+        productsGrid.appendChild(card);
+    });
+    
+    console.log('Prodotti ordinati per peso (dal più basso al più alto)');
 }
 
 function setupLightbox() {
